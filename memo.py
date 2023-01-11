@@ -4,7 +4,7 @@ import sqlite3, datetime
 FONT = ('メイリオ',18)
 db_path = 'memo.db'
 created, modified = None, None
-first_menu = 'Please Select'
+first_menu = '選択してください'
 options = [first_menu]
 
 def create_db():
@@ -88,17 +88,21 @@ def create():
     modified = created
     memo.delete(1.0, tkinter.END)
     change_menu(created)
+    lm['text'] = modified
 
 def read(value):
     global created, modified
     memo.delete(1.0, tkinter.END)
+    lm['text'] = ''
     if value != first_menu:
         data = query(value)
         memo.insert(1.0, data[0]['memo'])
         created = data[0]['created']
-        modified = datetime.datetime.now().strftime('%Y年%m月%d日%H:%M:%S')
+        modified = data[0]['modified']
+        lm['text'] = modified
 
 def save():
+    global modified
     new = True
     for option in query():
         if created == option['created']:
@@ -107,6 +111,8 @@ def save():
     if new:
         submit()
     else:
+        modified = datetime.datetime.now().strftime('%Y年%m月%d日%H:%M:%S')
+        lm['text'] = modified
         update()
 
 def remove():
@@ -116,13 +122,14 @@ def remove():
         created = selected.get()
         delete()
         change_menu()
+        lm['text'] = ''
 
 root = tkinter.Tk()
 root.title('メモ帳')
 root.geometry('500x500')
 
 f1 = tkinter.Frame(root)
-f1.pack()
+f1.pack(pady=10)
 
 l1 = tkinter.Label(f1, text='作成日')
 l1.grid(row=0, column=0)
@@ -133,16 +140,16 @@ selected = tkinter.StringVar()
 selected.set(options[0])
 dropdown = tkinter.OptionMenu(f1, selected, *options, command=read)
 dropdown.grid(row=0, column=1)
-lm = tkinter.Label(f1, text='', font=FONT)
+lm = tkinter.Label(f1, text='')
 lm.grid(row=1, column=1)
 
 f2 = tkinter.Frame(root)
-f2.pack()
+f2.pack(pady=10)
 
 memo = tkinter.Text(f2, width=50, height=20)
 memo.pack(side=tkinter.LEFT, padx=10)
 f3 = tkinter.Frame(root)
-f3.pack()
+f3.pack(pady=10)
 
 btn1 = tkinter.Button(f3, text='新規', font=FONT, command=create)
 btn1.pack(side=tkinter.LEFT, padx=10)
