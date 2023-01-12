@@ -20,7 +20,7 @@ def slide(i):
     cvs.delete('number')
     for i in range(9):
         if nums[i] != 0:
-            cvs.create_text(i%3*side+(side/2),i//3*side+(side/2),text=nums[i],font=('メイリオ',40),tags='number')
+            cvs.create_text(i%3*side+(side/2),i//3*side+(side/2),text=nums[i],font=('メイリオ',40),tags='number',fill='white')
 
 def click(e):
     for i in range(9):
@@ -36,6 +36,6 @@ cvs.pack()
 for i in range(9):
     cvs.create_rectangle(i%3*side,i//3*side,i%3*side+side,i//3*side+side,fill='gray')
     if nums[i] != 0:
-        cvs.create_text(i%3*side+(side/2),i//3*side+(side/2),text=nums[i],font=('メイリオ',40),tags='number')
+        cvs.create_text(i%3*side+(side/2),i//3*side+(side/2),text=nums[i],font=('メイリオ',40),tags='number',fill='white')
 
 root.mainloop()
