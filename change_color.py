@@ -20,7 +20,7 @@ cvs.pack()
 
 for y in range(5):
     for x in range(5):
-        id = cvs.create_rectangle(x*100,y*100,100+x*100,100+y*100,fill='black')
+        id = cvs.create_rectangle(x*100,y*100,100+x*100,100+y*100,fill='black',outline='white')
         ids.append(id)
 
 root.mainloop()
