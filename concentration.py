@@ -6,7 +6,6 @@ one, two = None, None
 timer = 0
 proc = 0
 stats = [0]*16
-ids = []
 colors = ['red','green','blue','yellow','magenta','cyan','purple','orange']
 tiles = []
 
