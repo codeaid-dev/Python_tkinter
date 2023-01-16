@@ -36,7 +36,7 @@ def control(e):
                     e.x+50,e.y+50,
                     fill='gray',
                     width=0,
-                    tags='player')
+                    tag='player')
 
 def collide(id1, id2):
     id1_x0,id1_y0,id1_x1,id1_y1 = cvs.coords(id1)

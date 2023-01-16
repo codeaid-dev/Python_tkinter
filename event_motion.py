@@ -6,7 +6,7 @@ def control(e):
                     e.x+50,e.y+50,
                     fill='gray',
                     width=0,
-                    tags='player')
+                    tag='player')
 
 root = tkinter.Tk()
 root.title('円を動かす')

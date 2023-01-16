@@ -8,7 +8,7 @@ fills = ['black']*3
 colors = ['red','green','blue']
 def move():
 #    global x,y,speedx,speedy
-    cvs.delete('circle')
+#    cvs.delete('circle')
     for i in range(3):
         if x[i] > 450 or x[i] < 0:
             speedx[i] *= -1
@@ -20,7 +20,8 @@ def move():
             cvs.itemconfig(id[i],fill=fills[i])
         x[i] += speedx[i]
         y[i] += speedy[i]
-        id[i] = cvs.create_oval(x[i],y[i],x[i]+50,y[i]+50,fill=fills[i],width=0,tags='circle')
+#        id[i] = cvs.create_oval(x[i],y[i],x[i]+50,y[i]+50,fill=fills[i],width=0,tag='circle')
+        cvs.coords(id[i],x[i],y[i],x[i]+50,y[i]+50)
     root.after(10, move)
 
 root = tkinter.Tk()
@@ -31,6 +32,7 @@ cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
 
 move()
-#cvs.create_oval(x,y,x+50,y+50,fill='black',width=0,tags='circle')
+for i in range(3):
+    id[i] = cvs.create_oval(x[i],y[i],x[i]+50,y[i]+50,fill='black',width=0,tag='circle')
 
 root.mainloop()
