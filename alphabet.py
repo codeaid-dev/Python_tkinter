@@ -3,6 +3,7 @@ import random
 
 alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 question = ''
+FONT = ('メイリオ', '24')
 
 atari = random.randint(0,25)
 for i in range(26):
@@ -12,17 +13,9 @@ for i in range(26):
 
 root = tkinter.Tk()
 root.geometry('600x400')
-q1 = tkinter.Label(root,
-    text='抜けているアルファベットはどれ？',
-    font=('メイリオ', '24'))
-q2 = tkinter.Label(root,
-        text=question,
-        font=('メイリオ', '24'),
-        fg='#800000',
-        bg='#808080')
-e = tkinter.Entry(root,
-        width=5,
-        font=('メイリオ', '24'))
+q1 = tkinter.Label(root, text='抜けているアルファベットはどれ？', font=FONT)
+q2 = tkinter.Label(root, text=question, font=FONT, fg='#800000', bg='#808080')
+e = tkinter.Entry(root, width=5, font=FONT)
 
 def check():
     if e.get().upper() in alphabet:
@@ -34,12 +27,8 @@ def check():
         result['text'] = 'アルファベットを入力してください'
     result.update()
 
-btn = tkinter.Button(root,
-        text='解答',
-        font=('メイリオ', '24'), command=check)
-result = tkinter.Label(root,
-        text='',
-        font=('メイリオ', '24'))
+btn = tkinter.Button(root, text='解答', font=FONT, command=check)
+result = tkinter.Label(root, text='', font=FONT)
 q1.pack(pady=10)
 q2.pack(pady=10)
 e.pack(pady=10)
