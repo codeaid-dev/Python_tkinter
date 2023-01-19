@@ -8,10 +8,11 @@ json_path = os.path.dirname(__file__) + '/books.json'
 
 def load_json():
     if os.path.exists(json_path):
-        with open(json_path, 'rt') as fp:
+        with open(json_path, 'rt', encoding='utf-8') as fp:
             try:
                 return json.load(fp)
             except Exception:
+                print('error')
                 return []
     return []
 

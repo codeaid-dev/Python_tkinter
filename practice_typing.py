@@ -44,7 +44,7 @@ def key(e):
 
 root = tkinter.Tk()
 root.title('タイピング練習')
-root.geometry('400x200')
+root.geometry('500x200')
 root['bg'] = 'white'
 root.bind('<Key>', key)
 ques = tkinter.Label(root,text='Start <Press any key>',font=('Helvetica',32),fg='black',bg='white')
