@@ -16,22 +16,28 @@ def load_json():
     return []
 
 def save_json(data):
+    res['fg'] = 'red'
+    if data['name']=='' or data['isbn']=='' or data['price']=='':
+        res['text'] = '項目はすべて入力してください'
+        return False
     if not data['price'].isdecimal():
-        res['text'] = '<<価格は数字で入力してください>>'
+        res['text'] = '価格は数字で入力してください'
         return False
     for s in data['isbn']:
         if s not in ISBN_CHAR:
-            res['text'] = '<<ISBNに数字とハイフン以外が含まれています>>'
+            res['text'] = 'ISBNに数字とハイフン以外が含まれています'
             return False
     latest = load_json()
     for exist in latest:
         for s in exist.values():
             if s.replace('-','') == data['isbn'].replace('-',''):
-                res['text'] = '<<ISBNがすでにあります>>'
+                res['text'] = 'ISBNがすでにあります'
                 return False
     latest.append(data)
     with open(json_path, 'wt', encoding='utf-8') as fp:
         json.dump(latest, fp, ensure_ascii=False, indent=2)
+    res['fg'] = 'green'
+    res['text'] = '書き込みました'
     return True
 
 root = tkinter.Tk()
@@ -46,6 +52,8 @@ def read():
         books += f"書籍名：{book['name']}\nISBN：{book['isbn']}\n価格：{book['price']}円\n"
         books += '==========\n'
     text.insert("1.0", books)
+    res['fg'] = 'green'
+    res['text'] = '読み込みました'
 
 def save():
     data = {}
