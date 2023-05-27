@@ -1,0 +1,90 @@
+[
+  {
+    "pref": "沖縄県",
+    "file": "images/okinawa.png"
+  },
+  {
+    "pref": "鹿児島県",
+    "file": "images/kagoshima.png"
+  },
+  {
+    "pref": "宮崎県",
+    "file": "images/miyazaki.png"
+  },
+  {
+    "pref": "大分県",
+    "file": "images/ooita.png"
+  },
+  {
+    "pref": "熊本県",
+    "file": "images/kumamoto.png"
+  },
+  {
+    "pref": "長崎県",
+    "file": "images/nagasaki.png"
+  },
+  {
+    "pref": "佐賀県",
+    "file": "images/saga.png"
+  },
+  {
+    "pref": "福岡県",
+    "file": "images/fukuoka.png"
+  },
+  {
+    "pref": "高知県",
+    "file": "images/kouchi.png"
+  },
+  {
+    "pref": "徳島県",
+    "file": "images/tokushima.png"
+  },
+  {
+    "pref": "愛媛県",
+    "file": "images/ehime.png"
+  },
+  {
+    "pref": "香川県",
+    "file": "images/kagawa.png"
+  },
+  {
+    "pref": "山口県",
+    "file": "images/yamaguchi.png"
+  },
+  {
+    "pref": "広島県",
+    "file": "images/hiroshima.png"
+  },
+  {
+    "pref": "岡山県",
+    "file": "images/okayama.png"
+  },
+  {
+    "pref": "島根県",
+    "file": "images/shimane.png"
+  },
+  {
+    "pref": "鳥取県",
+    "file": "images/tottori.png"
+  },
+  {
+    "pref": "和歌山県",
+    "file": "images/wakayama.png"
+  },
+  {
+    "pref": "奈良県",
+    "file": "images/nara.png"
+  },
+  {
+    "pref": "兵庫県",
+    "file": "images/hyogo.png"
+  },
+  {
+    "pref": "大阪府",
+    "file": "images/osaka.png"
+  },
+  {
+    "pref": "京都府",
+    "file": "images/kyoto.png"
+  }
+]
