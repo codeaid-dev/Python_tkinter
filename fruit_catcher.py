@@ -31,7 +31,7 @@ def main():
         fy = -30
         fs = random.randint(3,10)
     cvs.delete('score')
-    cvs.create_text(250,250,text=f'score: {score}',font=('メイリオ',28),tag='score')
+    cvs.create_text(250,250,text=f'score: {score}',font=('メイリオ',28),tag='score',fill='black')
     if timer >= 1000:
         return
     root.after(10,main)
