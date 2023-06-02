@@ -9,7 +9,7 @@ national_flags = {'ベルギー':'./images/Belgium.png',
                   'ハンガリー':'./images/Hungary.png',
                   'イタリア':'./images/Italy.png',
                   'モナコ':'./images/Monaco.png',
-                  'ボーランド':'./images/Poland.png',
+                  'ポーランド':'./images/Poland.png',
                   'スウェーデン':'./images/Sweden.png'}
 
 def select():
