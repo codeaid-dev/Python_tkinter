@@ -5,10 +5,37 @@ class Circle:
         self.x = x
         self.y = y
 
+def judge():
+    for i in range(len(masu)):
+        if 0<=i%7<=3:
+            if masu[i].stat==1 and masu[i+1].stat==1 and masu[i+2].stat==1 and masu[i+3].stat==1:
+                return 1
+            if masu[i].stat==2 and masu[i+1].stat==2 and masu[i+2].stat==2 and masu[i+3].stat==2:
+                return 2
+        if 0<=i//7<=2:
+            if masu[i].stat==1 and masu[i+7].stat==1 and masu[i+14].stat==1 and masu[i+21].stat==1:
+                return 1
+            if masu[i].stat==2 and masu[i+7].stat==2 and masu[i+14].stat==2 and masu[i+21].stat==2:
+                return 2
+        if 3<=i<=6 or 10<=i<=13 or 17<=i<=20:
+            if masu[i].stat==1 and masu[i+6].stat==1 and masu[i+12].stat==1 and masu[i+18].stat==1:
+                return 1
+            if masu[i].stat==2 and masu[i+6].stat==2 and masu[i+12].stat==2 and masu[i+18].stat==2:
+                return 2
+        if 0<=i<=3 or 7<=i<=10 or 14<=i<=17:
+            if masu[i].stat==1 and masu[i+8].stat==1 and masu[i+9].stat==1 and masu[i+10].stat==1:
+                return 1
+            if masu[i].stat==2 and masu[i+8].stat==2 and masu[i+9].stat==2 and masu[i+10].stat==2:
+                return 2
+    return 0
+
+over = False
 turn = False # True:赤,False:黄
 masu = []
 def pressed(event):
-    global turn
+    global turn,over
+    if over:
+        return
     for i,en in enumerate(masu):
         if en.x < event.x < en.x+100 and en.y < event.y < en.y+100:
             if (i>=35 and en.stat==0) or (masu[i+7].stat!=0 and en.stat==0):
@@ -20,6 +47,14 @@ def pressed(event):
                   cvs.itemconfig(en.id,fill='yellow')
                   turn = True
                   en.stat = 2
+        if judge() == 1:
+            cvs.create_text(350,300,text="赤の勝ち",fill='black',font=('メイリオ', 60))
+            over = True
+            break
+        if judge() == 2:
+            cvs.create_text(350,300,text="黄の勝ち",fill='black',font=('メイリオ', 60))
+            over = True
+            break
 
 root = tkinter.Tk()
 root.title('4目並べ')
