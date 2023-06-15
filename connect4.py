@@ -23,9 +23,9 @@ def judge():
             if masu[i].stat==2 and masu[i+6].stat==2 and masu[i+12].stat==2 and masu[i+18].stat==2:
                 return 2
         if 0<=i<=3 or 7<=i<=10 or 14<=i<=17:
-            if masu[i].stat==1 and masu[i+8].stat==1 and masu[i+9].stat==1 and masu[i+10].stat==1:
+            if masu[i].stat==1 and masu[i+8].stat==1 and masu[i+16].stat==1 and masu[i+24].stat==1:
                 return 1
-            if masu[i].stat==2 and masu[i+8].stat==2 and masu[i+9].stat==2 and masu[i+10].stat==2:
+            if masu[i].stat==2 and masu[i+8].stat==2 and masu[i+16].stat==2 and masu[i+24].stat==2:
                 return 2
     return 0
 
