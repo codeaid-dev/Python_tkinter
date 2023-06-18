@@ -1,21 +1,18 @@
 import tkinter
 
 def click():
-    txt = iv.get()
-    l['text'] = txt
+    l['text'] = sv.get()
 
 root = tkinter.Tk()
-root.title('ラジオボタン')
+root.title('プルダウンメニュー')
 root.geometry('400x200')
 
 txt = ['選択1','選択2','選択3']
-f = tkinter.Frame(root)
-f.pack()
-iv = tkinter.IntVar()
-iv.set(1)
-for i in range(len(txt)):
-    r = tkinter.Radiobutton(f, text=txt[i], value=i+1, variable=iv, font=('メイリオ',20))
-    r.grid(row=0, column=i)
+sv = tkinter.StringVar()
+sv.set(txt[0])
+o = tkinter.OptionMenu(root, sv, *txt)
+o.config(font=('メイリオ',20))
+o.pack()
 b = tkinter.Button(root, text='表示', command=click, font=('メイリオ',24))
 b.pack()
 l = tkinter.Label(root, text='ここに表示', font=('メイリオ',32))
