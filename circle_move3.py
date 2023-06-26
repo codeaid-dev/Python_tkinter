@@ -19,7 +19,9 @@ root.title('複数の円を動かす')
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
 for i in range(3):
-    id[i] = cvs.create_oval(x[i],y[i],x[i]+50,y[i]+50,fill='black',width=0,tag='circle')
+    id[i] = cvs.create_oval(x[i],y[i],
+                            x[i]+50,y[i]+50,
+                            fill='black',width=0,tag='circle')
 
 move()
 root.mainloop()
