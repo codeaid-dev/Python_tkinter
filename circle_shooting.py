@@ -17,35 +17,45 @@ enemys = []
 bullets = []
 count = 0
 over = False
+over_msg = 0
 score = 0
+score_msg = 0
 
-def move(e):
+key = ''
+def key_down(e):
+    global key
     key = e.keysym
-    if key == 'Up':
-        canvas.move('fighter',0,-10)
-        canvas.move(player.id,0,-10)
-        player.y -= 10
-    if key == 'Down':
-        canvas.move('fighter',0,10)
-        canvas.move(player.id,0,10)
-        player.y += 10
-    if key == 'Left':
-        canvas.move('fighter',-10,0)
-        canvas.move(player.id,-10,0)
-        player.x -= 10
-    if key == 'Right':
-        canvas.move('fighter',10,0)
-        canvas.move(player.id,10,0)
-        player.x += 10
     if key == 'space':
         bullets.append(Sprite())
+def key_up(e):
+    global key
+    key = ''
+
+def move():
+    if key == 'Up':
+        canvas.move('fighter',0,-5)
+        canvas.move(player.id,0,-5)
+        player.y -= 5
+    if key == 'Down':
+        canvas.move('fighter',0,5)
+        canvas.move(player.id,0,5)
+        player.y += 5
+    if key == 'Left':
+        canvas.move('fighter',-5,0)
+        canvas.move(player.id,-5,0)
+        player.x -= 5
+    if key == 'Right':
+        canvas.move('fighter',5,0)
+        canvas.move(player.id,5,0)
+        player.x += 5
+    root.after(10,move)
 
 def main():
-    global count,over,score
+    global count,over,score, over_msg, score_msg
     if over:
         fnt=('Times New Roman',30,'bold')
-        canvas.create_text(250,400,text='GAME OVER',fill='white',font=fnt)
-        canvas.create_text(250,450,text=score,fill='white',font=fnt)
+        over_msg = canvas.create_text(250,400,text='GAME OVER',fill='white',font=fnt)
+        score_msg = canvas.create_text(250,450,text=score,fill='white',font=fnt)
         return
     for bullet in bullets:
         bullet.y -= 10
@@ -80,14 +90,26 @@ def main():
             else:
                 canvas.coords(e.id, e.x-e.s/2, e.y-e.s/2, e.x+e.s/2, e.y+e.s/2)
         else:
-            e.id = canvas.create_oval(e.x-e.s/2, e.y-e.s/2, e.x+e.s/2, e.y+e.s/2,fill='gray',width=0)
+            e.id = canvas.create_oval(e.x-e.s/2, e.y-e.s/2, e.x+e.s/2, e.y+e.s/2,fill='gray',width=0,tags='enemy')
         if e.is_hit(player):
             over = True
     root.after(10,main)
 
+def reset():
+    global count, over, score, over_msg, score_msg
+    over = False
+    score = 0
+    canvas.delete(score_msg)
+    canvas.delete(over_msg)
+    for e in enemys:
+        enemys.remove(e)
+    canvas.delete('enemy')
+    main()
+
 root = tkinter.Tk()
 root.title('サークルシューティング')
-root.bind('<KeyPress>', move)
+root.bind('<KeyPress>', key_down)
+root.bind('<KeyRelease>', key_up)
 canvas = tkinter.Canvas(root, width=500, height=800, bg='black')
 canvas.pack()
 fighter = tkinter.PhotoImage(file='images/fighter_white.png')
@@ -98,5 +120,12 @@ canvas.create_image(posx,posy,image=fighter,tags='fighter')
 player = Sprite(posx,posy,40)
 player.id = canvas.create_oval(posx-20,posy-20,posx+20,posy+20,width=0)
 
+my_menu = tkinter.Menu(root)
+root.config(menu=my_menu)
+options_menu = tkinter.Menu(my_menu, tearoff=False)
+my_menu.add_cascade(label='オプション', menu=options_menu)
+options_menu.add_command(label='リセット', command=reset)
+
 main()
+move()
 root.mainloop()
