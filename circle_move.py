@@ -1,38 +1,28 @@
 import tkinter
-import random
 
-x, y = [75,225,325], [225,225,225]
-speedx, speedy = [3,2,3], [2,3,1]
-id = [0]*3
-fills = ['black']*3
-colors = ['red','green','blue']
+x, y = 225, 225
+speedx, speedy = 3, 2
+
 def move():
-#    global x,y,speedx,speedy
-#    cvs.delete('circle')
-    for i in range(3):
-        if x[i] > 450 or x[i] < 0:
-            speedx[i] *= -1
-            fills[i] =random.choice(colors)
-            cvs.itemconfig(id[i],fill=fills[i])
-        if y[i] > 450 or y[i] < 0:
-            speedy[i] *= -1
-            fills[i] =random.choice(colors)
-            cvs.itemconfig(id[i],fill=fills[i])
-        x[i] += speedx[i]
-        y[i] += speedy[i]
-#        id[i] = cvs.create_oval(x[i],y[i],x[i]+50,y[i]+50,fill=fills[i],width=0,tag='circle')
-        cvs.coords(id[i],x[i],y[i],x[i]+50,y[i]+50)
+    global x, y, speedx, speedy
+    cvs.delete('circle')
+    if x > 450 or x < 0:
+        speedx *= -1
+    if y > 450 or y < 0:
+        speedy *= -1
+    x += speedx
+    y += speedy
+    cvs.create_oval(x,y,x+50,y+50,
+                    fill='black',
+                    width=0,
+                    tag='circle')
     root.after(10, move)
 
 root = tkinter.Tk()
 root.title('円を動かす')
-#root.geometry('500x500')
-
-cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
+cvs = tkinter.Canvas(root, width=500,
+                    height=500,
+                    bg='white')
 cvs.pack()
-
 move()
-for i in range(3):
-    id[i] = cvs.create_oval(x[i],y[i],x[i]+50,y[i]+50,fill='black',width=0,tag='circle')
-
 root.mainloop()

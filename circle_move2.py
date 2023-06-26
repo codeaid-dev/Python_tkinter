@@ -20,7 +20,7 @@ cvs = tkinter.Canvas(root, width=500,
                     height=500,
                     bg='white')
 cvs.pack()
-cvs.create_oval(225,225,275,275,
+cvs.create_oval(x,y,x+50,y+50,
                 fill='black',
                 width=0,
                 tag='circle')
