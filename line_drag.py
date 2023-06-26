@@ -7,7 +7,7 @@ def press(e):
     y = e.y
 def drag(e):
     global x,y
-    cvs.create_oval(x,y,e.x,e.y,fill='black',width=0)
+    cvs.create_line(x,y,e.x,e.y,fill='black',width=2)
     x = e.x
     y = e.y
 
