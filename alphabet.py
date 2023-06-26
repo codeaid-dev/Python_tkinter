@@ -13,6 +13,7 @@ for i in range(26):
 
 root = tkinter.Tk()
 root.geometry('600x400')
+root.title('アルファベットクイズ')
 q1 = tkinter.Label(root, text='抜けているアルファベットはどれ？', font=FONT)
 q2 = tkinter.Label(root, text=question, font=FONT, fg='#800000', bg='#808080')
 e = tkinter.Entry(root, width=5, font=FONT)

@@ -7,6 +7,7 @@ question = random.choice(list(capital.keys()))
 
 root = tkinter.Tk()
 root.geometry('600x400')
+root.title('首都クイズ')
 q = tkinter.Label(root,
     text=f'{question}の首都はどこ？',
     font=('メイリオ', '24'))
