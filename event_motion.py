@@ -8,7 +8,7 @@ root.title('円を動かす')
 root.bind('<Motion>', control)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
-id = cvs.create_oval(-100,-100,
+id = cvs.create_oval(0,0,
                     0,0,
                     fill='gray',
                     width=0,
