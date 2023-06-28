@@ -2,7 +2,6 @@ import tkinter
 
 root = tkinter.Tk()
 root.title('市松模様')
-root.geometry('500x500')
 cvs = tkinter.Canvas(root,width=500,height=500,bg='white')
 cvs.pack()
 for y in range(10):
