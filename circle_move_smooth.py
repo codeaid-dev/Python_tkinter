@@ -1,4 +1,4 @@
-import tkinter, random
+import tkinter
 
 class Circle:
     pass
