@@ -35,8 +35,8 @@ root.bind('<KeyRelease>', key_up)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
 player = Circle()
-player.x = 35
-player.y = 35
+player.x = 235
+player.y = 235
 player.speedx = 0
 player.speedy = 0
 player.id = cvs.create_oval(player.x,player.y,player.x+30,player.y+30,fill='black',width=0)
