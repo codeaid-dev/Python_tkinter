@@ -28,7 +28,10 @@ def move():
     cvs.coords(player.id,player.x,player.y,player.x+30,player.y+30)
     for wall in walls:
       if collide(player, wall) and wall.num == goal:
-          pass
+          etime = time.time()-stime
+          cvs.create_text(250,250,text='CLEAR',fill='black',font=('Helvetica',30))
+          cvs.create_text(250,280,text=f'{etime:.0f} sec',fill='black',font=('Helvetica',30))
+          return
       if collide(player, wall) or player.x<0 or player.x>470 or player.y<0 or player.y>470:
           cvs.create_text(250,250,text='GAME OVER',fill='black',font=('Helvetica',30))
           return
@@ -43,7 +46,7 @@ def collide(player, wall):
     return False
 
 root = tkinter.Tk()
-root.title('通路を抜ける')
+root.title('通路を抜けろ')
 root.bind('<KeyPress>', key_down)
 root.bind('<KeyRelease>', key_up)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
@@ -69,6 +72,6 @@ for y in range(5):
             cvs.itemconfig(wall.id,fill='blue')
         num += 1
         walls.append(wall)
-
+stime = time.time()
 move()
 root.mainloop()
