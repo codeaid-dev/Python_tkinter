@@ -95,7 +95,7 @@ root.title('飲食店メニュー')
 root.geometry('400x400')
 
 f1 = tkinter.Frame(root)
-f1.pack()
+f1.pack(pady=5)
 
 l1 = tkinter.Label(f1, text='料理名')
 l1.grid(row=0, column=0)
@@ -108,10 +108,10 @@ price = tkinter.Entry(f1, width=20, font=FONT)
 price.grid(row=1, column=1)
 
 f2 = tkinter.Frame(root)
-f2.pack()
+f2.pack(pady=5)
 
 info = tkinter.Label(root, text='')
-info.pack()
+info.pack(pady=5)
 
 btn1 = tkinter.Button(f2, text='表示', font=FONT, command=read)
 btn1.pack(side=tkinter.LEFT, padx=10)
@@ -121,7 +121,7 @@ btn3 = tkinter.Button(f2, text='削除', font=FONT, command=remove)
 btn3.pack(side=tkinter.LEFT, padx=10)
 
 text = tkinter.Text(root, width=50, height=10)
-text.pack()
+text.pack(pady=5)
 
 create_db()
 root.mainloop()

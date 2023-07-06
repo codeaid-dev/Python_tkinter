@@ -17,28 +17,29 @@ def load_json():
     return []
 
 def save_json(data):
-    res['fg'] = 'red'
+    info['fg'] = 'red'
     if data['name']=='' or data['isbn']=='' or data['price']=='':
-        res['text'] = '項目はすべて入力してください'
+        info['text'] = '項目はすべて入力してください。'
         return False
     if not data['price'].isdecimal():
-        res['text'] = '価格は数字で入力してください'
+        info['text'] = '価格は数字で入力してください。'
         return False
     for s in data['isbn']:
         if s not in ISBN_CHAR:
-            res['text'] = 'ISBNに数字とハイフン以外が含まれています'
+            info['text'] = 'ISBNに数字とハイフン以外が含まれています。'
             return False
+    data['isbn'] = data['isbn'].replace('-','')
     latest = load_json()
     for exist in latest:
         for s in exist.values():
-            if s.replace('-','') == data['isbn'].replace('-',''):
-                res['text'] = 'ISBNがすでにあります'
+            if s == data['isbn']:
+                info['text'] = 'ISBNがすでにあります。'
                 return False
     latest.append(data)
     with open(json_path, 'wt', encoding='utf-8') as fp:
         json.dump(latest, fp, ensure_ascii=False, indent=2)
-    res['fg'] = 'green'
-    res['text'] = '書き込みました'
+    info['fg'] = 'green'
+    info['text'] = '書き込みました。'
     return True
 
 root = tkinter.Tk()
@@ -53,8 +54,8 @@ def read():
         books += f"書籍名：{book['name']}\nISBN：{book['isbn']}\n価格：{book['price']}円\n"
         books += '==========\n'
     text.insert("1.0", books)
-    res['fg'] = 'green'
-    res['text'] = '読み込みました'
+    info['fg'] = 'green'
+    info['text'] = '読み込みました。'
 
 def save():
     data = {}
@@ -66,8 +67,31 @@ def save():
         isbn.delete(0, tkinter.END)
         price.delete(0, tkinter.END)
 
+def remove():
+    info['fg'] = 'red'
+    if isbn.get() == '':
+        info['text'] = 'ISBNを入力してください。'
+        return
+    for s in isbn.get():
+        if s not in ISBN_CHAR:
+            info['text'] = 'ISBNに数字とハイフン以外が含まれています。'
+            return
+    data = load_json()
+    latest = []
+    for book in data:
+        if isbn.get().replace('-','') != book['isbn']:
+            latest.append(book)
+
+    with open(json_path, 'wt', encoding='utf-8') as fp:
+        json.dump(latest, fp, ensure_ascii=False, indent=2)
+
+    isbn.delete(0, tkinter.END)
+    info['fg'] = 'green'
+    info['text'] = '削除しました。'
+
+
 f1 = tkinter.Frame(root)
-f1.pack()
+f1.pack(pady=5)
 
 l1 = tkinter.Label(f1, text='書籍名')
 l1.grid(row=0, column=0)
@@ -84,17 +108,19 @@ price = tkinter.Entry(f1, width=20, font=FONT)
 price.grid(row=2, column=1)
 
 f2 = tkinter.Frame(root)
-f2.pack()
+f2.pack(pady=5)
 
-res = tkinter.Label(root, text='')
-res.pack()
+info = tkinter.Label(root, text='')
+info.pack(pady=5)
 
 btn1 = tkinter.Button(f2, text='読み込む', font=FONT, command=read)
 btn1.pack(side=tkinter.LEFT, padx=10)
 btn2 = tkinter.Button(f2, text='書き込む', font=FONT, command=save)
 btn2.pack(side=tkinter.LEFT, padx=10)
+btn3 = tkinter.Button(f2, text='削除', font=FONT, command=remove)
+btn3.pack(side=tkinter.LEFT, padx=10)
 
 text = tkinter.Text(root, width=50, height=10)
-text.pack()
+text.pack(pady=5)
 
 root.mainloop()
