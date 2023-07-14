@@ -6,24 +6,24 @@ def key(e):
     global x,y
     if e.keysym == 'Left':
         x -= 15
-        if x < 0:
-            x += 15
+        if x < -100:
+            x = 500
     if e.keysym == 'Right':
         x += 15
-        if x > 400:
-            x -= 15
+        if x > 500:
+            x = -100
     if e.keysym == 'Up':
         y -= 15
-        if y < 0:
-            y += 15
+        if y < -100:
+            y = 500
     if e.keysym == 'Down':
         y += 15
-        if y > 400:
-            y -= 15
+        if y > 500:
+            y = -100
     cvs.coords('rect',x,y,x+100,y+100)
 
 root = tkinter.Tk()
-root.title('画面の中を四角形が移動')
+root.title('画面を超えて四角形が移動')
 root.bind('<Key>', key)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
