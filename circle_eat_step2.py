@@ -17,7 +17,7 @@ def motion(e):
     player.y = e.y-player.size/2
 
 def create_enemy():
-    c = f'#{random.randint(1,255):02x}{random.randint(1,255):02x}{random.randint(1,255):02x}'
+    c = f'#{random.randint(0,255):02x}{random.randint(0,255):02x}{random.randint(0,255):02x}'
     s = random.uniform(player.size*0.5,player.size*2)
     e = Circle(-s,random.uniform(0,400-s))
     e.size = s

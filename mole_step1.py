@@ -5,24 +5,19 @@ moles = []
 
 class Mole:
     def __init__(self, x, y):
-        w = 0
-        self.x1 = x + w
-        self.y1 = y + w
-        self.x2 = x+150 - w
-        self.y2 = y+150 - w
-        self.id = None
+        self.diameter = 150
+        self.x = x
+        self.y = y
         self.dir = 2
     def draw(self):
-        self.id = cvs.create_oval(self.x1,self.y1,self.x2,self.y2,fill='brown',width=0)
+        self.id = cvs.create_oval(self.x,self.y,self.x+self.diameter,self.y+self.diameter,fill='brown',width=0)
     def change(self):
-        self.x1 += self.dir
-        self.y1 += self.dir
-        self.x2 += (self.dir*-1)
-        self.y2 += (self.dir*-1)
-        if 75<=self.x1<=150 or 225<=self.x1<=300 or 375<=self.x1<=450 or self.x1<=0:
+        self.x += self.dir
+        self.y += self.dir
+        self.diameter -= self.dir*2
+        if 75<=self.x<=150 or 225<=self.x<=300 or 375<=self.x<=450 or self.x<=0:
             self.dir *= -1
-        cvs.delete(self.id)
-        self.id = cvs.create_oval(self.x1,self.y1,self.x2,self.y2,fill='brown',width=0)
+        cvs.coords(self.id,self.x,self.y,self.x+self.diameter,self.y+self.diameter)
 
 def main():
     for m in moles:

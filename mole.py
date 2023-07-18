@@ -7,34 +7,30 @@ timer = 0
 
 class Mole:
     def __init__(self, x, y):
-        w = random.randint(0,75)
-        self.x1 = x + w
-        self.y1 = y + w
-        self.x2 = x+150 - w
-        self.y2 = y+150 - w
-        self.id = None
+        self.diameter = random.randint(0,150)
+        self.x = x+((150-self.diameter)/2)
+        self.y = y+((150-self.diameter)/2)
         self.dir = random.randint(2,5)
     def draw(self):
-        self.id = cvs.create_oval(self.x1,self.y1,self.x2,self.y2,fill='brown',width=0)
+        self.id = cvs.create_oval(self.x,self.y,self.x+self.diameter,self.y+self.diameter,fill='brown',width=0)
     def change(self):
-        self.x1 += self.dir
-        self.y1 += self.dir
-        self.x2 += (self.dir*-1)
-        self.y2 += (self.dir*-1)
-        if 75<=self.x1<=150 or 225<=self.x1<=300 or 375<=self.x1<=450 or self.x1<=0:
+        self.x += self.dir
+        self.y += self.dir
+        self.diameter -= self.dir*2
+        if 75<=self.x<=150 or 225<=self.x<=300 or 375<=self.x<=450 or self.x<=0:
             self.dir *= -1
-        cvs.delete(self.id)
-        if 0<self.x1<10 or 150<self.x1<160 or 300<self.x1<310:
-            self.id = cvs.create_oval(self.x1,self.y1,self.x2,self.y2,fill='orange',width=0)
+        cvs.coords(self.id,self.x,self.y,self.x+self.diameter,self.y+self.diameter)
+        if 0<self.x<10 or 150<self.x<160 or 300<self.x<310:
+            cvs.itemconfig(self.id,fill='orange')
         else:
-            self.id = cvs.create_oval(self.x1,self.y1,self.x2,self.y2,fill='brown',width=0)
+            cvs.itemconfig(self.id,fill='brown')
 
 def click(e):
     global score
     x = e.x // 150
     y = e.y // 150
     index = x+y*3
-    if 0<moles[index].x1<10 or 150<moles[index].x1<160 or 300<moles[index].x1<310:
+    if 0<moles[index].x<10 or 150<moles[index].x<160 or 300<moles[index].x<310:
         score += 1
 
 def main():
