@@ -1,11 +1,11 @@
 import tkinter
 
-def control(e):
+def motion(e):
     cvs.coords(id,e.x-50,e.y-50,e.x+50,e.y+50)
 
 root = tkinter.Tk()
-root.title('円を動かす')
-root.bind('<Motion>', control)
+root.title('マウスについていく円')
+root.bind('<Motion>', motion)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
 id = cvs.create_oval(0,0,

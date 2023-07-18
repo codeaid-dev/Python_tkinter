@@ -3,7 +3,7 @@ import tkinter, random, time
 class Circle:
     pass
 
-def control(e):
+def motion(e):
     cvs.coords(player.id,e.x-player.size/2,e.y-player.size/2,
                e.x+player.size/2,e.y+player.size/2)
     player.x = e.x-player.size/2
@@ -32,7 +32,7 @@ def main():
         enemy.y += enemy.speedy
         cvs.coords(enemy.id,enemy.x,enemy.y,
                    enemy.x+enemy.size,enemy.y+enemy.size)
-        if player != 0 and collide(player,enemy):
+        if collide(player,enemy):
             over = True
     if player.x < 0 or player.x > 400-player.size or player.y < 0 or player.y > 600-player.size:
         over = True
@@ -54,7 +54,7 @@ def collide(player, enemy):
 
 root = tkinter.Tk()
 root.title('')
-root.bind('<Motion>',control)
+root.bind('<Motion>',motion)
 root.bind('<Button>',pressed)
 cvs = tkinter.Canvas(root, width=400,
                     height=600,
