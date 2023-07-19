@@ -16,7 +16,6 @@ def motion(e):
     player.y = e.y-player.size/2
 
 player = None
-status = 0
 
 root = tkinter.Tk()
 root.title('円を食べる')
