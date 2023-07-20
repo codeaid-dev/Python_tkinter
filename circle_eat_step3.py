@@ -10,10 +10,10 @@ class Circle:
     def draw(self):
         self.id = cvs.create_oval(self.x,self.y,self.x+self.size,self.y+self.size,fill=self.color,width=0)
     def collide(self,c):
-        subx = abs((c.x+c.size//2)-(self.x+self.size//2))
-        suby = abs((c.y+c.size//2)-(self.y+self.size//2))
+        subx = abs((c.x+c.size/2)-(self.x+self.size/2))
+        suby = abs((c.y+c.size/2)-(self.y+self.size/2))
         dist = (subx**2 + suby**2) ** 0.5
-        return dist <= self.size//2 + c.size//2
+        return dist <= self.size/2 + c.size/2
 
 def motion(e):
     cvs.coords(player.id,e.x-player.size/2,e.y-player.size/2,
