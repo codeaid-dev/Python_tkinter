@@ -23,7 +23,7 @@ def key(e):
     cvs.coords('rect',x,y,x+100,y+100)
 
 root = tkinter.Tk()
-root.title('画面の中を四角形が移動')
+root.title('キーで四角形を動かす')
 root.bind('<Key>', key)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()

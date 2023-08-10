@@ -14,7 +14,7 @@ def pressed(e):
                         fill='red',width=0)
 
 root = tkinter.Tk()
-root.title('当たりを探せ')
+root.title('当たりを探せ①')
 root.bind('<Button>', pressed)
 cvs = tkinter.Canvas(root, width=900, height=200, bg='white')
 cvs.pack()

@@ -53,7 +53,7 @@ def collide(player, enemy):
     return False
 
 root = tkinter.Tk()
-root.title('')
+root.title('落ちてくる円を避ける')
 root.bind('<Motion>',motion)
 root.bind('<Button>',pressed)
 cvs = tkinter.Canvas(root, width=400,

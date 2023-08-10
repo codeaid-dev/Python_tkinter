@@ -17,7 +17,7 @@ def click(e):
         cvs.create_text(250,250,text=f'経過時間：{int(time.time()-start)}秒',fill='black',font=('メイリオ',32))
 
 root = tkinter.Tk()
-root.title('当たりを探せ')
+root.title('当たりを探せ②')
 root.geometry('500x500')
 root.bind('<Button>',click)
 cvs = tkinter.Canvas(root,width=500,height=500,bg='white')
