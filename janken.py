@@ -1,34 +1,51 @@
-import tkinter, random
+import tkinter
+import random
 
-com = ['ぐー','ちょき','ぱー']
-
-def click():
-    c = random.choice(com)
-    y = sv.get()
-    if y == c:
-      l['text'] = 'あいこ'
-    elif (y == 'ぐー' and c == 'ちょき') or (y == 'ちょき' and c == 'ぱー') or (y == 'ぱー' and c == 'ぐー'):
-       l['text'] = f'あなたの勝ち(コンピューター：{c})'
-    elif (y == 'ぐー' and c == 'ぱー') or (y == 'ちょき' and c == 'ぐー') or (y == 'ぱー' and c == 'ちょき'):
-       l['text'] = f'コンピューターの勝ち(コンピューター：{c})'
+images = []
+def pon():
+    #0:グー、1:チョキ、2:パー
+    global comimg,youimg,com,you
+    cvs.delete('result')
+    cvs.delete(comimg)
+    cvs.delete(youimg)
+    c = random.randint(0,2)
+    y = intvar.get()
+    com = images[c].subsample(2)
+    you = images[y].subsample(2)
+    comimg = cvs.create_image(125,125,image=com)
+    youimg = cvs.create_image(375,125,image=you)
+    if (c==0 and y==1) or (c==1 and y==2) or (c==2 and y==0):
+        cvs.create_text(250,125,text='コンピューターの勝ち',fill='black',font=('メイリオ',20),tags='result')
+    elif (c==0 and y==2) or (c==1 and y==0) or (c==2 and y==1):
+        cvs.create_text(250,125,text='あなたの勝ち',fill='black',font=('メイリオ',20),tags='result')
+    else:
+        cvs.create_text(250,125,text='あいこ',fill='black',font=('メイリオ',20),tags='result')
 
 root = tkinter.Tk()
 root.title('じゃんけん')
-root.geometry('700x200')
+cvs = tkinter.Canvas(root, width=500, height=250, bg='white')
+cvs.pack()
+images.append(tkinter.PhotoImage(file='images/janken_gu.png'))
+images.append(tkinter.PhotoImage(file='images/janken_choki.png'))
+images.append(tkinter.PhotoImage(file='images/janken_pa.png'))
 
-f = tkinter.Frame(root)
-f.pack()
-sv = tkinter.StringVar()
-sv.set('ぐー')
-rb1 = tkinter.Radiobutton(f, text='ぐー', value='ぐー', variable=sv, font=('メイリオ',20))
-rb2 = tkinter.Radiobutton(f, text='ちょき', value='ちょき', variable=sv, font=('メイリオ',20))
-rb3 = tkinter.Radiobutton(f, text='ぱー', value='ぱー', variable=sv, font=('メイリオ',20))
+com = images[0].subsample(2)
+comimg = cvs.create_image(125,125,image=com)
+you = images[0].subsample(2)
+youimg = cvs.create_image(375,125,image=you)
+
+btn = tkinter.Button(root, text='ぽん', font=('メイリオ', 20), command=pon)
+btn.pack(side=tkinter.BOTTOM, pady=10)
+
+frm = tkinter.Frame(root)
+frm.pack(side=tkinter.BOTTOM)
+intvar = tkinter.IntVar()
+intvar.set(0)
+rb1 = tkinter.Radiobutton(frm, text='グー', value=0, variable=intvar, font=('メイリオ',20))
+rb2 = tkinter.Radiobutton(frm, text='チョキ', value=1, variable=intvar, font=('メイリオ',20))
+rb3 = tkinter.Radiobutton(frm, text='パー', value=2, variable=intvar, font=('メイリオ',20))
 rb1.grid(row=0, column=0)
 rb2.grid(row=0, column=1)
 rb3.grid(row=0, column=2)
-b = tkinter.Button(root, text='ぽん', command=click, font=('メイリオ',20))
-b.pack()
-l = tkinter.Label(root, text='結果表示', font=('メイリオ',20))
-l.pack()
 
 root.mainloop()
