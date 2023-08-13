@@ -2,23 +2,23 @@ import tkinter
 
 def file_open():
     cvs.delete('all')
-    cvs.create_text(200,100,text="ファイルを開く",fill='black',font=('メイリオ',20))
+    cvs.create_text(250,100,text="ファイルを開く",fill='black',font=('メイリオ',20))
 
 def file_save():
     cvs.delete('all')
-    cvs.create_text(200,100,text="ファイルを保存",fill='black',font=('メイリオ',20))
+    cvs.create_text(250,100,text="ファイルを保存",fill='black',font=('メイリオ',20))
 
 def displayed():
     cvs.delete('all')
-    cvs.create_text(200,100,text=f"表示1:{bv1.get()}, 表示2:{bv2.get()}, 表示3:{bv3.get()}",fill='black',font=('メイリオ',20))
+    cvs.create_text(250,100,text=f"表示1:{bv1.get()}, 表示2:{bv2.get()}, 表示3:{bv3.get()}",fill='black',font=('メイリオ',20))
 
 def selected():
     cvs.delete('all')
-    cvs.create_text(200,100,text=f"{iv.get()}を選択",fill='black',font=('メイリオ',20))
+    cvs.create_text(250,100,text=f"{iv.get()}を選択",fill='black',font=('メイリオ',20))
 
 root = tkinter.Tk()
 root.title('コマンドメニュー')
-cvs = tkinter.Canvas(width=400, height=200, bg='white')
+cvs = tkinter.Canvas(width=500, height=200, bg='white')
 cvs.pack()
 
 menu = tkinter.Menu(root)
