@@ -4,4 +4,4 @@ __pycache__
 sample.db
 sample.json
 books.json
-test.py
+test*
