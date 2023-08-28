@@ -40,6 +40,7 @@ player.y = 235
 player.speedx = 0
 player.speedy = 0
 player.id = cvs.create_oval(player.x,player.y,player.x+30,player.y+30,fill='black',width=0)
+#player.id = cvs.create_oval(player.x,player.y,player.x+30,player.y+30,fill='#ff00ff',width=0)
 
 move()
 root.mainloop()
