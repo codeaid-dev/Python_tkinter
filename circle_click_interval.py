@@ -14,7 +14,7 @@ circles = []
 
 def pressed(event):
     for en in circles:
-        dist = (abs(en.x+25-event.x)**2+abs(en.y+25-event.y)**2)**0.5
+        dist = ((en.x+25-event.x)**2+(en.y+25-event.y)**2)**0.5
         if dist < 25 and en.showing:
             en.speedx,en.speedy = 0,0
             en.interval = 0
