@@ -2,7 +2,16 @@ import tkinter
 import random
 
 class Circle:
-    pass
+    def collide(self,obj):
+        x = ((self.x+self.size/2) - (obj.x+obj.size/2)) ** 2
+        y = ((self.y+self.size/2) - (obj.y+obj.size/2)) ** 2
+        dist = (x+y) ** 0.5
+        pe = self.size/2+obj.size/2
+        if dist < pe and not obj.atari:
+            obj.atari = True
+            return True
+        else:
+            return False
 
 player = None
 key = ''
@@ -14,6 +23,7 @@ def key_up(e):
     key = ''
 
 def move():
+    global hit_count
     if player.y > 270:
         player.speedy = 0
         player.y = 270
@@ -30,13 +40,14 @@ def move():
     player.speedx *= 0.98
     player.x += player.speedx
     player.y += player.speedy
-    cvs.coords(player.id,player.x,player.y,player.x+30,player.y+30)
+    cvs.coords(player.id,player.x,player.y,player.x+player.size,player.y+player.size)
 
     for enemy in enemys:
         enemy.x -= 3
         if enemy.x < -enemy.size:
-            enemy.x = random.randint(700,1400)
-        hit(enemy)
+            enemy.x = random.randint(700+enemy.size,1400-enemy.size)
+        if player.collide(enemy):
+            hit_count += 1
         if enemy.atari:
             cvs.itemconfig(enemy.id,fill='red')
         cvs.coords(enemy.id,enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size)
@@ -46,16 +57,6 @@ def move():
         return
 
     root.after(10,move)
-
-def hit(enemy):
-    global hit_count
-    x = ((player.x+15) - (enemy.x+enemy.size/2)) ** 2
-    y = ((player.y+15) - (enemy.y+enemy.size/2)) ** 2
-    dist = (x+y) ** 0.5
-    pe = 15+enemy.size/2
-    if dist < pe and not enemy.atari:
-        enemy.atari = True
-        hit_count += 1
 
 root = tkinter.Tk()
 root.title('ジャンプして避けろ')
@@ -68,15 +69,16 @@ player.x = 235
 player.y = 235
 player.speedx = 0
 player.speedy = 0
-player.id = cvs.create_oval(player.x,player.y,player.x+30,player.y+30,fill='black',width=0)
+player.size = 30
+player.id = cvs.create_oval(player.x,player.y,player.x+player.size,player.y+player.size,fill='black',width=0)
 
 hit_count = 0
 enemy_count = 5
 enemys = []
 for i in range(enemy_count):
     enemy = Circle()
-    enemy.x = random.randint(700,1400)
     enemy.size = random.randint(20,150)
+    enemy.x = random.randint(700+enemy.size,1400-enemy.size)
     enemy.y = 300-enemy.size
     enemy.id = cvs.create_oval(enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size,fill='blue',width=0)
     enemy.atari = False

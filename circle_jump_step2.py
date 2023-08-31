@@ -30,12 +30,12 @@ def move():
     player.speedx *= 0.98
     player.x += player.speedx
     player.y += player.speedy
-    cvs.coords(player.id,player.x,player.y,player.x+30,player.y+30)
+    cvs.coords(player.id,player.x,player.y,player.x+player.size,player.y+player.size)
 
     for enemy in enemies:
         enemy.x -= 3
         if enemy.x < -enemy.size:
-            enemy.x = random.randint(700,1400)
+            enemy.x = random.randint(700+enemy.size,1400-enemy.size)
         cvs.coords(enemy.id,enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size)
 
     root.after(10,move)
@@ -51,14 +51,15 @@ player.x = 235
 player.y = 235
 player.speedx = 0
 player.speedy = 0
-player.id = cvs.create_oval(player.x,player.y,player.x+30,player.y+30,fill='black',width=0)
+player.size = 30
+player.id = cvs.create_oval(player.x,player.y,player.x+player.size,player.y+player.size,fill='black',width=0)
 
 enemy_count = 5
 enemies = []
 for i in range(enemy_count):
     enemy = Circle()
-    enemy.x = random.randint(700,1400)
     enemy.size = random.randint(20,150)
+    enemy.x = random.randint(700+enemy.size,1400-enemy.size)
     enemy.y = 300-enemy.size
     enemy.id = cvs.create_oval(enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size,fill='blue',width=0)
     enemies.append(enemy)
