@@ -1,7 +1,13 @@
 import tkinter, random, time
 
 class Circle:
-    pass
+    def collide(self,obj):
+        sradius = self.size/2
+        oradius = obj.size/2
+        dist = (((self.x+sradius)-(obj.x+oradius))**2 + ((self.y+sradius)-(obj.y+oradius))**2) ** 0.5
+        if dist <= sradius+oradius:
+            return True
+        return False
 
 def motion(e):
     cvs.coords(player.id,e.x-player.size/2,e.y-player.size/2,
@@ -32,7 +38,7 @@ def main():
         enemy.y += enemy.speedy
         cvs.coords(enemy.id,enemy.x,enemy.y,
                    enemy.x+enemy.size,enemy.y+enemy.size)
-        if collide(player,enemy):
+        if enemy.collide(player):
             over = True
     if player.x < 0 or player.x > 400-player.size or player.y < 0 or player.y > 600-player.size:
         over = True
@@ -43,14 +49,6 @@ def main():
         return
 
     root.after(10,main)
-
-def collide(player, enemy):
-    id1_x0,id1_y0,id1_x1,id1_y1 = cvs.coords(player.id)
-    id2_x0,id2_y0,id2_x1,id2_y1 = cvs.coords(enemy.id)
-    dist = (abs((id2_x0+enemy.size/2) - (id1_x0+player.size/2))**2 + abs((id2_y0+enemy.size/2) - (id1_y0+player.size/2))**2) ** 0.5
-    if dist <= player.size/2+enemy.size/2:
-        return True
-    return False
 
 root = tkinter.Tk()
 root.title('落ちてくる円を避ける')
