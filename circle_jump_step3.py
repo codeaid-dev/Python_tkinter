@@ -1,7 +1,7 @@
 import tkinter
 import random
 
-class Circle:
+class Circle: # step3
     def collide(self,obj):
         x = ((self.x+self.size/2) - (obj.x+obj.size/2)) ** 2
         y = ((self.y+self.size/2) - (obj.y+obj.size/2)) ** 2
@@ -23,7 +23,7 @@ def key_up(e):
     key = ''
 
 def move():
-    global hit_count
+    global hit_count # step3
     if player.y > 270:
         player.speedy = 0
         player.y = 270
@@ -42,20 +42,22 @@ def move():
     player.y += player.speedy
     cvs.coords(player.id,player.x,player.y,player.x+player.size,player.y+player.size)
 
-    for enemy in enemys:
+    for enemy in enemies:
         enemy.x -= 3
         if enemy.x < -enemy.size:
             enemy.x = random.randint(700+enemy.size,1400-enemy.size)
+        # step3 -->
         if player.collide(enemy):
             hit_count += 1
         if enemy.atari:
             cvs.itemconfig(enemy.id,fill='red')
+        # <-- step3
         cvs.coords(enemy.id,enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size)
-
+    # step3 -->
     if hit_count == enemy_count:
         cvs.create_text(350,150,text='GAME OVER',fill='black',font=('Helvetica',30,'bold'))
         return
-
+    # <-- step3
     root.after(10,move)
 
 root = tkinter.Tk()
@@ -72,17 +74,17 @@ player.speedy = 0
 player.size = 30
 player.id = cvs.create_oval(player.x,player.y,player.x+player.size,player.y+player.size,fill='black',width=0)
 
-hit_count = 0
+hit_count = 0 # step3
 enemy_count = 5
-enemys = []
+enemies = []
 for i in range(enemy_count):
     enemy = Circle()
     enemy.size = random.randint(20,150)
     enemy.x = random.randint(700+enemy.size,1400-enemy.size)
     enemy.y = 300-enemy.size
     enemy.id = cvs.create_oval(enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size,fill='blue',width=0)
-    enemy.atari = False
-    enemys.append(enemy)
+    enemy.atari = False # step3
+    enemies.append(enemy)
 
 move()
 root.mainloop()

@@ -1,5 +1,5 @@
 import tkinter
-import random
+import random # step2
 
 class Circle:
     pass
@@ -30,14 +30,14 @@ def move():
     player.speedx *= 0.98
     player.x += player.speedx
     player.y += player.speedy
-    cvs.coords(player.id,player.x,player.y,player.x+player.size,player.y+player.size)
-
+    cvs.coords(player.id,player.x,player.y,player.x+player.size,player.y+player.size) # step2
+# step2 -->
     for enemy in enemies:
         enemy.x -= 3
         if enemy.x < -enemy.size:
             enemy.x = random.randint(700+enemy.size,1400-enemy.size)
         cvs.coords(enemy.id,enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size)
-
+# <-- step2
     root.after(10,move)
 
 root = tkinter.Tk()
@@ -51,9 +51,9 @@ player.x = 235
 player.y = 235
 player.speedx = 0
 player.speedy = 0
-player.size = 30
-player.id = cvs.create_oval(player.x,player.y,player.x+player.size,player.y+player.size,fill='black',width=0)
-
+player.size = 30 # step2
+player.id = cvs.create_oval(player.x,player.y,player.x+player.size,player.y+player.size,fill='black',width=0) # step2
+# step2 -->
 enemy_count = 5
 enemies = []
 for i in range(enemy_count):
@@ -63,6 +63,6 @@ for i in range(enemy_count):
     enemy.y = 300-enemy.size
     enemy.id = cvs.create_oval(enemy.x,enemy.y,enemy.x+enemy.size,enemy.y+enemy.size,fill='blue',width=0)
     enemies.append(enemy)
-
+# <-- step2
 move()
 root.mainloop()
