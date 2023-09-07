@@ -7,19 +7,19 @@ def key(e):
     if e.keysym == 'Left':
         x -= 15
         if x < 0:
-            x += 15
+            x = 0
     if e.keysym == 'Right':
         x += 15
         if x > 400:
-            x -= 15
+            x = 400
     if e.keysym == 'Up':
         y -= 15
         if y < 0:
-            y += 15
+            y = 0
     if e.keysym == 'Down':
         y += 15
         if y > 400:
-            y -= 15
+            y = 400
     cvs.coords('rect',x,y,x+100,y+100)
 
 root = tkinter.Tk()
