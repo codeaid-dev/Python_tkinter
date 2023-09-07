@@ -38,7 +38,7 @@ def pressed(event):
         return
     for i,en in enumerate(masu):
         if en.x < event.x < en.x+100 and en.y < event.y < en.y+100:
-            if (i>=35 and en.stat==0) or (masu[i+7].stat!=0 and en.stat==0):
+            if (i>=35 and en.stat==0) or (i<35 and masu[i+7].stat!=0 and en.stat==0):
                 if turn:
                   cvs.itemconfig(en.id,fill='red')
                   turn = False
