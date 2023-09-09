@@ -13,7 +13,7 @@ def press(e):
     global score
     #print('判定前：',odai)
     for i in range(4):
-        dist = (abs(e.x-ens[i].x)**2 + abs(e.y-ens[i].y)**2) ** 0.5
+        dist = ((e.x-ens[i].x)**2 + (e.y-ens[i].y)**2) ** 0.5
         if dist < 100:
             if odai[2] == 0:
                 if odai[0] == i:
