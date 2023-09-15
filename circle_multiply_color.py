@@ -9,8 +9,8 @@ def pressed(e):
     en = Circle()
     en.x = e.x-25
     en.y = e.y-25
-    en.speedx = random.randint(1,3)
-    en.speedy = random.randint(4,5)
+    en.speedx = random.randint(2,3)
+    en.speedy = random.randint(1,3)
     en.color = 'black'
     en.id = cvs.create_oval(en.x,en.y,en.x+50,en.y+50,fill=en.color,width=0)
     circles.append(en)
