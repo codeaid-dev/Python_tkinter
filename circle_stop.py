@@ -39,7 +39,7 @@ def control(e):
 def collide(id1, id2):
     id1_x0,id1_y0,id1_x1,id1_y1 = cvs.coords(id1)
     id2_x0,id2_y0,id2_x1,id2_y1 = cvs.coords(id2)
-    dist = (abs((id2_x0+50) - (id1_x0+25))**2 + abs((id2_y0+50) - (id1_y0+25))**2) ** 0.5
+    dist = (((id2_x0+50)-(id1_x0+25))**2 + ((id2_y0+50)-(id1_y0+25))**2) ** 0.5
     if dist <= 75:
         return True
     return False
