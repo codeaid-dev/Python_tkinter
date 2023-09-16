@@ -17,7 +17,12 @@ def move():
         if en.y < 25 or en.y > 475:
             en.dy *= -1
         cvs.coords(en.id,en.x-25,en.y-25,en.x+25,en.y+25)
+        over = False
         if ((player.x-en.x)**2 + (player.y-en.y)**2)**0.5 < 50:
+            over = True
+        if player.x < 25 or player.x > 475 or player.y < 25 or player.y > 475:
+            over = True
+        if over:
             etime = time.time()-stime
             cvs.create_text(250,250,text=f'GAME OVER : {etime:.0f}sec',
                             tags='start',fill='black',
