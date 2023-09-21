@@ -35,7 +35,7 @@ frm.pack(pady=5)
 
 result = tkinter.Label(root,
             text='Result here',
-            fg='yellow',
+            fg='orange',
             font=('helvetica', 20))
 result.pack(pady=5)
 
