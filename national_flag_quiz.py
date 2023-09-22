@@ -1,16 +1,16 @@
 import tkinter
 import random
 
-national_flags = {'ベルギー':'./images/Belgium.png',
-                  'ブルガリア':'./images/Bulgaria.png',
-                  'デンマーク':'./images/Denmark.png',
-                  'フィンランド':'./images/Finland.png',
-                  'ドイツ':'./images/Germany.png',
-                  'ハンガリー':'./images/Hungary.png',
-                  'イタリア':'./images/Italy.png',
-                  'モナコ':'./images/Monaco.png',
-                  'ポーランド':'./images/Poland.png',
-                  'スウェーデン':'./images/Sweden.png'}
+national_flags = {'ベルギー':'images/Belgium.png',
+                  'ブルガリア':'images/Bulgaria.png',
+                  'デンマーク':'images/Denmark.png',
+                  'フィンランド':'images/Finland.png',
+                  'ドイツ':'images/Germany.png',
+                  'ハンガリー':'images/Hungary.png',
+                  'イタリア':'images/Italy.png',
+                  'モナコ':'images/Monaco.png',
+                  'ポーランド':'images/Poland.png',
+                  'スウェーデン':'images/Sweden.png'}
 
 def select():
     keys = list(national_flags.keys())
