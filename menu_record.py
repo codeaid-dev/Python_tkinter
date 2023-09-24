@@ -120,7 +120,7 @@ btn2.pack(side=tkinter.LEFT, padx=10)
 btn3 = tkinter.Button(f2, text='削除', font=FONT, command=remove)
 btn3.pack(side=tkinter.LEFT, padx=10)
 
-text = tkinter.Text(root, width=50, height=10)
+text = tkinter.Text(root, width=50, height=13)
 text.pack(pady=5)
 
 create_db()
