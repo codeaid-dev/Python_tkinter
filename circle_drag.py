@@ -6,7 +6,7 @@ def press(e):
     x = e.x
     y = e.y
 def drag(e):
-    dst = (abs(e.x-x)**2 + abs(e.y-y)**2) ** 0.5
+    dst = ((e.x-x)**2 + (e.y-y)**2) ** 0.5
     cvs.create_oval(x-dst,y-dst,x+dst,y+dst,fill='yellow',width=0)
 
 root = tkinter.Tk()
