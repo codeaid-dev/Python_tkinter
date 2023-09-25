@@ -1,58 +1,63 @@
 import tkinter
 import os, sqlite3
+from contextlib import closing
 
 FONT = ('メイリオ',18)
-
-db_path = os.path.dirname(__file__) + '/menu.db'
+db = 'menu.db'
 
 def create_db():
-    con = sqlite3.connect(db_path)
-    cur = con.cursor()
-    cur.execute('''
-    CREATE TABLE IF NOT EXISTS menu (
-        name TEXT NOT NULL PRIMARY KEY,
-        price INT NOT NULL
-    )
-    ''')
-    con.commit()
-    con.close()
+    try:
+        with closing(sqlite3.connect(db)) as con:
+            cur = con.cursor()
+            cur.execute('''CREATE TABLE IF NOT EXISTS menu (
+                name TEXT NOT NULL PRIMARY KEY,
+                price INT NOT NULL
+            )''')
+    except sqlite3.Error as e:
+        print(e)
 
 def submit():
-    con = sqlite3.connect(db_path)
-    cur = con.cursor()
-    cur.execute('INSERT INTO menu (name, price) VALUES (:name, :price)',
-            {
-                'name': name.get() or None,
-                'price': price.get() or None
-            })
-    con.commit()
-    con.close()
+    try:
+        with closing(sqlite3.connect(db)) as con:
+            cur = con.cursor()
+            cur.execute('INSERT INTO menu (name, price) VALUES (:name, :price)',
+                    {
+                        'name': name.get() or None,
+                        'price': price.get() or None
+                    })
+            con.commit()
+    except sqlite3.Error as e:
+        print(e)
 
 def query(ryouri=None):
-    con = sqlite3.connect(db_path)
-    cur = con.cursor()
-    if ryouri:
-        cur.execute('SELECT * FROM menu WHERE name=?', (ryouri,))
-    else:
-        cur.execute('SELECT * FROM menu')
-    result = cur.fetchall()
-    con.commit()
-    con.close()
-    new_list = []
-    for name,price in result:
-        new_dict = {}
-        new_dict['name'] = name
-        new_dict['price'] = price
-        new_list.append(new_dict)
+    try:
+        with closing(sqlite3.connect(db)) as con:
+            cur = con.cursor()
+            if ryouri:
+                cur.execute('SELECT * FROM menu WHERE name=?', (ryouri,))
+            else:
+                cur.execute('SELECT * FROM menu')
+            result = cur.fetchall()
+            con.commit()
+            new_list = []
+            for name,price in result:
+                new_dict = {}
+                new_dict['name'] = name
+                new_dict['price'] = price
+                new_list.append(new_dict)
+    except sqlite3.Error as e:
+        print(e)
 
     return new_list
 
 def delete(ryouri):
-    con = sqlite3.connect(db_path)
-    cur = con.cursor()
-    cur.execute('DELETE FROM menu WHERE name=?', (ryouri,))
-    con.commit()
-    con.close()
+    try:
+        with closing(sqlite3.connect(db)) as con:
+            cur = con.cursor()
+            cur.execute('DELETE FROM menu WHERE name=?', (ryouri,))
+            con.commit()
+    except sqlite3.Error as e:
+        print(e)
 
 def read():
     data = query()
