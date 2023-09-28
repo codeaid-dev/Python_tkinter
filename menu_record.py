@@ -16,7 +16,7 @@ def create_db():
     except sqlite3.Error as e:
         print(e)
 
-def submit():
+def insert():
     try:
         with closing(sqlite3.connect(db)) as con:
             cur = con.cursor()
@@ -78,7 +78,7 @@ def save():
     elif query(name.get()):
         info['text'] = '料理はすでに保存されています。'
     else:
-        submit()
+        insert()
         name.delete(0, tkinter.END)
         price.delete(0, tkinter.END)
         info['fg'] = 'blue'
