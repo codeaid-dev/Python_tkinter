@@ -5,7 +5,7 @@ from contextlib import closing
 FONT = ('メイリオ',18)
 db = 'menu.db'
 
-def create_db():
+def create():
     try:
         with closing(sqlite3.connect(db)) as con:
             cur = con.cursor()
@@ -128,5 +128,5 @@ btn3.pack(side=tkinter.LEFT, padx=10)
 text = tkinter.Text(root, width=50, height=13)
 text.pack(pady=5)
 
-create_db()
+create()
 root.mainloop()
