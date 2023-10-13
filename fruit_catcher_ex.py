@@ -24,18 +24,18 @@ def move():
         ps += 1
     ps *= 0.98
     px += ps
+    cvs.coords(kago,px,py)
     root.after(10,move)
 
 def main():
     global fx,fy,fs,score,timer
     timer += 1
     fy += fs
-    if fy > 500:
+    if fy > 525:
         fx = random.randint(25,475)
         fy = -25
         fs = random.randint(3,10)
     cvs.coords(fruit,fx,fy)
-    cvs.coords(kago,px,py)
     if fx+25>=px-25 and fx-25<=px+25 and fy+25>=py-9 and fy-25<=py+9:
         score += 1
         fx = random.randint(25,475)
