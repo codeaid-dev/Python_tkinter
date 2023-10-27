@@ -22,7 +22,7 @@ root.title('ついてくる円')
 root.bind('<Motion>',move)
 cvs = tkinter.Canvas(root,width=500,height=500,bg='white')
 cvs.pack()
-ball = cvs.create_oval(bx-25,by-25,bx-25,by-25,fill='red',width=0)
+ball = cvs.create_oval(bx-25,by-25,bx+25,by+25,fill='red',width=0)
 
 main()
 root.mainloop()
