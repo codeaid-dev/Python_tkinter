@@ -29,13 +29,13 @@ def main():
     by += dy
     cvs.coords(ball,bx-25,by-25,bx+25,by+25)
     cvs.delete('score')
-    cvs.create_text(250,250,text=f'Score:{score}',fill='white',font=('メイリオ',40),tags='score')
+    cvs.create_text(250,250,text=f'Score:{score}',fill='black',font=('メイリオ',40),tags='score')
     root.after(10,main)
 
 root = tkinter.Tk()
 root.title('円たたき')
 root.bind('<Button>', pressed)
-cvs = tkinter.Canvas(root,width=500,height=500,bg='skyblue')
+cvs = tkinter.Canvas(root,width=500,height=500,bg='white')
 cvs.pack()
 ball = cvs.create_oval(bx-25,by-25,bx+25,by+25,fill='red',width=0)
 cvs.create_text(250,250,text=f'Score:{score}',fill='white',font=('メイリオ',40),tags='score')
