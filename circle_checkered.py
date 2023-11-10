@@ -10,14 +10,14 @@ for y in range(cnt):
     for x in range(cnt):
         if y//5%2==0:
             if x//5%2==0:
-                FILL = 'white'
+                color = 'white'
             else:
-                FILL = 'black'
+                color = 'black'
         else:
             if x//5%2==1:
-                FILL = 'white'
+                color = 'white'
             else:
-                FILL = 'black'
-        cvs.create_oval(x*size,y*size,x*size+size,y*size+size,fill=FILL,width=0)
+                color = 'black'
+        cvs.create_oval(x*size,y*size,x*size+size,y*size+size,fill=color,width=0)
 
 root.mainloop()

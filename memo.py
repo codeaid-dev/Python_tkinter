@@ -71,8 +71,6 @@ def change_menu(new=None):
     options.append(first_menu)
     for option in query():
         options.append(option['created'])
-    if new != None:
-        options.append(new)
     menu = tkinter.Menu(dropdown)
     for option in options:
         menu.add_command(label=option, command=tkinter._setit(selected, option, read))
@@ -87,7 +85,7 @@ def create():
     created = datetime.datetime.now().strftime('%Y年%m月%d日%H:%M:%S')
     modified = created
     memo.delete(1.0, tkinter.END)
-    change_menu(created)
+    change_menu()
     lm['text'] = modified
 
 def read(value):
@@ -114,6 +112,7 @@ def save():
         modified = datetime.datetime.now().strftime('%Y年%m月%d日%H:%M:%S')
         lm['text'] = modified
         update()
+    change_menu(created)
 
 def remove():
     global created

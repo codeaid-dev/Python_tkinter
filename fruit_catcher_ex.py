@@ -1,10 +1,10 @@
 import tkinter
 import random
 
-fx,fy = random.randint(0,470),-30
+fx,fy = random.randint(25,475),-25
 fs = random.randint(3,10)
-px,py = 250,485
-ps = 10
+px,py = 250,491
+ps = 0
 score = 0
 timer = 0
 
@@ -17,27 +17,29 @@ def key_up(e):
     key = ''
 
 def move():
-    global px, py
+    global ps,px
     if key == 'Left':
-        px -= ps
+        ps -= 1
     if key == 'Right':
-        px += ps
+        ps += 1
+    ps *= 0.98
+    px += ps
+    cvs.coords(kago,px,py)
     root.after(10,move)
 
 def main():
     global fx,fy,fs,score,timer
     timer += 1
     fy += fs
-    if fy > 500:
-        fx = random.randint(0,470)
-        fy = -30
+    if fy > 525:
+        fx = random.randint(25,475)
+        fy = -25
         fs = random.randint(3,10)
-    cvs.coords('fruit',fx,fy,fx+30,fy+30)
-    cvs.coords('player',px,py,px+50,py+10)
-    if fx+30>=px and fx<=px+50 and fy+30>=py and fy<=py+10:
+    cvs.coords(fruit,fx,fy)
+    if fx+25>=px-25 and fx-25<=px+25 and fy+25>=py-9 and fy-25<=py+9:
         score += 1
-        fx = random.randint(0,470)
-        fy = -30
+        fx = random.randint(25,475)
+        fy = -25
         fs = random.randint(3,10)
     cvs.delete('score')
     cvs.create_text(250,250,text=f'score: {score}',font=('メイリオ',28),tag='score',fill='black')
@@ -52,8 +54,10 @@ root.bind('<KeyRelease>', key_up)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
 
-cvs.create_rectangle(fx,fy,fx+30,fy+30,fill='red',width=0,tag='fruit')
-cvs.create_rectangle(px,py,px+50,py+10,fill='black',width=0,tag='player')
+fruit_img = tkinter.PhotoImage(file='images/fruit_ringo_50.png')
+fruit = cvs.create_image(fx,fy,image=fruit_img)
+kago_img = tkinter.PhotoImage(file='images/fruit_kago_50.png')
+kago = cvs.create_image(px,py,image=kago_img)
 move()
 main()
 root.mainloop()
