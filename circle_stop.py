@@ -56,7 +56,7 @@ for i in range(3):
                             fill=en.fill,width=0)
     circles.append(en)
 
-player = cvs.create_oval(0,0,
+player = cvs.create_oval(-100,-100,
                     0,0,
                     fill='gray',
                     width=0,
