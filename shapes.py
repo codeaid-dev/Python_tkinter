@@ -1,7 +1,7 @@
 import tkinter
 
 root = tkinter.Tk()
-root.title('サンプル')
+root.title('図形を描画する')
 
 cvs = tkinter.Canvas(root, width=800, height=250)
 cvs.pack()
