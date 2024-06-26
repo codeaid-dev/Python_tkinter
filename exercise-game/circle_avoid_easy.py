@@ -9,6 +9,7 @@ def motion(e):
     cvs.coords(player.id,e.x-25,e.y-25,e.x+25,e.y+25)
 
 def move():
+    global over
     for en in ens:
         en.x += en.dx
         en.y += en.dy
@@ -24,7 +25,7 @@ def move():
             over = True
         if over:
             etime = time.time()-stime
-            cvs.create_text(250,250,text=f'GAME OVER : {etime:.0f}sec',
+            cvs.create_text(250,250,text=f'GAME OVER : {etime:.0f}sec\nrestart : press R',
                             tags='start',fill='black',
                             font=('helvetica',30,'bold'))
             return
@@ -42,10 +43,24 @@ def pressed(e):
     stime = time.time()
     move()
 
+def key(e):
+    if e.keysym.upper() == 'R':
+        if over:
+            reset()
+
+def reset():
+    global start
+    start = False
+    cvs.delete('start')
+    cvs.create_text(250,250,text='Mouse Press : Start',
+                    tags='start',fill='black',
+                    font=('helvetica',30,'bold'))
+
 root = tkinter.Tk()
 root.title('円を避けるゲーム')
 root.bind('<Motion>', motion)
 root.bind('<Button>', pressed)
+root.bind('<Key>', key)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
 player = Circle()
@@ -64,8 +79,6 @@ for i in range(10):
     en.id = cvs.create_oval(en.x-25,en.y-25,en.x+25,en.y+25,fill='red',width=0)
     ens.append(en)
 
-cvs.create_text(250,250,text='Mouse Press : Start',
-                tags='start',fill='black',
-                font=('helvetica',30,'bold'))
+reset()
 
 root.mainloop()
