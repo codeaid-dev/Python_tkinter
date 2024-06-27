@@ -6,7 +6,7 @@ one, two = None, None
 timer = 0
 proc = 0
 stats = [0]*16
-colors = ['red','green','blue','yellow','magenta','cyan','purple','orange']
+colors = ['red','green','blue','yellow','magenta','cyan','brown','orange']
 tiles = []
 
 def draw():
@@ -67,7 +67,7 @@ def main():
     root.after(200,main)
 
 root = tkinter.Tk()
-root.title('ミニ神経衰弱')
+root.title('神経衰弱')
 root.geometry('500x500')
 root.bind('<Button>',click)
 

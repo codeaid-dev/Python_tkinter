@@ -85,7 +85,7 @@ def main():
     root.after(10, main)
 
 root = tkinter.Tk()
-root.title('ブロック')
+root.title('ブロック崩し')
 root.bind('<KeyPress>', key_down)
 root.bind('<KeyRelease>', key_up)
 root.geometry('600x800')
