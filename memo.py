@@ -1,7 +1,7 @@
 import tkinter
 import sqlite3, datetime
 
-FONT = ('メイリオ',18)
+FONT = ('Helvetica',18)
 db_path = 'memo.db'
 created, modified = None, None
 first_menu = '選択してください'

@@ -19,7 +19,7 @@ def click(e):
             end = time.time()-start
             clear = True
         cvs.create_oval(x*50,y*50,x*50+50,y*50+50,fill='red')
-        cvs.create_text(250,250,text=f'経過時間：{end:.0f}秒',fill='black',font=('メイリオ',32))
+        cvs.create_text(250,250,text=f'経過時間：{end:.0f}秒',fill='black',font=('Helvetica',32))
 
 root = tkinter.Tk()
 root.title('当たりを探せ②')

@@ -30,20 +30,20 @@ q = tkinter.Label(root, image=prefs[0]['img'])
 q.pack()
 btn1 = tkinter.Button(root,
         text='次の問題',
-        font=('メイリオ', 16),
+        font=('Helvetica', 16),
         command=questions)
 btn1.pack(side=tkinter.BOTTOM, pady=10)
 btn2 = tkinter.Button(root,
         text='解答',
-        font=('メイリオ', 16),
+        font=('Helvetica', 16),
         command=judge)
 btn2.pack(side=tkinter.BOTTOM, pady=10)
 answer = tkinter.Entry(width=20,
-            font=('メイリオ', 16))
+            font=('Helvetica', 16))
 answer.pack(side=tkinter.BOTTOM, pady=10)
 result = tkinter.Label(root,
             text='結果表示',
-            font=('メイリオ', 16))
+            font=('Helvetica', 16))
 result.pack(side=tkinter.BOTTOM)
 
 questions()

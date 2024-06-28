@@ -15,11 +15,11 @@ def pon():
     comimg = cvs.create_image(125,125,image=com)
     youimg = cvs.create_image(375,125,image=you)
     if (c==0 and y==1) or (c==1 and y==2) or (c==2 and y==0):
-        cvs.create_text(250,125,text='コンピューターの勝ち',fill='black',font=('メイリオ',20),tags='result')
+        cvs.create_text(250,125,text='コンピューターの勝ち',fill='black',font=('Helvetica',20),tags='result')
     elif (c==0 and y==2) or (c==1 and y==0) or (c==2 and y==1):
-        cvs.create_text(250,125,text='あなたの勝ち',fill='black',font=('メイリオ',20),tags='result')
+        cvs.create_text(250,125,text='あなたの勝ち',fill='black',font=('Helvetica',20),tags='result')
     else:
-        cvs.create_text(250,125,text='あいこ',fill='black',font=('メイリオ',20),tags='result')
+        cvs.create_text(250,125,text='あいこ',fill='black',font=('Helvetica',20),tags='result')
 
 root = tkinter.Tk()
 root.title('じゃんけん')
@@ -34,16 +34,16 @@ comimg = cvs.create_image(125,125,image=com)
 you = images[0].subsample(2)
 youimg = cvs.create_image(375,125,image=you)
 
-btn = tkinter.Button(root, text='ぽん', font=('メイリオ', 20), command=pon)
+btn = tkinter.Button(root, text='ぽん', font=('Helvetica', 20), command=pon)
 btn.pack(side=tkinter.BOTTOM, pady=10)
 
 frm = tkinter.Frame(root)
 frm.pack(side=tkinter.BOTTOM)
 intvar = tkinter.IntVar()
 intvar.set(0)
-rb1 = tkinter.Radiobutton(frm, text='グー', value=0, variable=intvar, font=('メイリオ',20))
-rb2 = tkinter.Radiobutton(frm, text='チョキ', value=1, variable=intvar, font=('メイリオ',20))
-rb3 = tkinter.Radiobutton(frm, text='パー', value=2, variable=intvar, font=('メイリオ',20))
+rb1 = tkinter.Radiobutton(frm, text='グー', value=0, variable=intvar, font=('Helvetica',20))
+rb2 = tkinter.Radiobutton(frm, text='チョキ', value=1, variable=intvar, font=('Helvetica',20))
+rb3 = tkinter.Radiobutton(frm, text='パー', value=2, variable=intvar, font=('Helvetica',20))
 rb1.grid(row=0, column=0)
 rb2.grid(row=0, column=1)
 rb3.grid(row=0, column=2)

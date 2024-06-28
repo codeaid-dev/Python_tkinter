@@ -12,7 +12,7 @@ cvs.create_arc(410,50,510,200,fill='yellow',start=45,extent=270,style=tkinter.PI
 cvs.create_polygon(550,50,500,200,600,200,fill='cyan',outline='gray',width=5)
 cvs.create_polygon(630,50,610,200,710,200,690,50,fill='magenta',outline='lime',width=5)
 
-FNT = ('メイリオ',32)
+FNT = ('Helvetica',32)
 l = tkinter.Label(cvs,text='ラベル：',font=FNT)
 l.place(x=50,y=300)
 e = tkinter.Entry(cvs,width=20,font=FNT)

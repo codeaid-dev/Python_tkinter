@@ -1,7 +1,7 @@
 import tkinter
 import os, json
 
-FONT = ('メイリオ',18)
+FONT = ('Helvetica',18)
 ISBN_CHAR = '0123456789-'
 
 json_path = os.path.dirname(__file__) + '/books.json'

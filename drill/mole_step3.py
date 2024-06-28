@@ -39,7 +39,7 @@ def main():
     for m in moles:
         m.change()
     if timer > 200:
-        cvs.create_text(225,225,text=f'GAME OVER ({score} hits)',fill='black',font=('メイリオ',32))
+        cvs.create_text(225,225,text=f'GAME OVER ({score} hits)',fill='black',font=('Helvetica',32))
         return
     root.after(50,main)
 

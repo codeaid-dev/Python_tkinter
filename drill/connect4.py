@@ -48,11 +48,11 @@ def pressed(event):
                   turn = True
                   en.stat = 2
         if judge() == 1:
-            cvs.create_text(350,300,text="赤の勝ち",fill='black',font=('メイリオ', 60))
+            cvs.create_text(350,300,text="赤の勝ち",fill='black',font=('Helvetica', 60))
             over = True
             break
         if judge() == 2:
-            cvs.create_text(350,300,text="黄の勝ち",fill='black',font=('メイリオ', 60))
+            cvs.create_text(350,300,text="黄の勝ち",fill='black',font=('Helvetica', 60))
             over = True
             break
 

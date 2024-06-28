@@ -1,7 +1,7 @@
 import tkinter
 import os, sqlite3
 
-FONT = ('メイリオ',18)
+FONT = ('Helvetica',18)
 
 #db_path = os.path.dirname(__file__) + '/sample.db'
 db_path = 'sample.db'

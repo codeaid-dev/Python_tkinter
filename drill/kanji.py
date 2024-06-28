@@ -19,8 +19,8 @@ def pressed(event):
             if tile.atari:
                 spend = time.time()-start
                 cvs.itemconfig(tile.id, fill='red')
-                cvs.create_text(250,250,text='FINISH!!',fill='white',font=('メイリオ', 30))
-                cvs.create_text(250,300,text=f'{spend:.1f}',fill='white',font=('メイリオ', 30))
+                cvs.create_text(250,250,text='FINISH!!',fill='white',font=('Helvetica', 30))
+                cvs.create_text(250,300,text=f'{spend:.1f}',fill='white',font=('Helvetica', 30))
                 over = True
     cvs.update()
 
@@ -39,10 +39,10 @@ for i in range(100):
     tile = Rect(x,y)
     tile.id = cvs.create_rectangle(x,y,x+50,y+50,fill='gray')
     if i == atari:
-        cvs.create_text(x+25,y+25,text=qkey,fill='black',font=('メイリオ', 18))
+        cvs.create_text(x+25,y+25,text=qkey,fill='black',font=('Helvetica', 18))
         tile.atari = True
     else:
-        cvs.create_text(x+25,y+25,text=questions[qkey],fill='black',font=('メイリオ', 18))
+        cvs.create_text(x+25,y+25,text=questions[qkey],fill='black',font=('Helvetica', 18))
         tile.atari = False
     tiles.append(tile)
 

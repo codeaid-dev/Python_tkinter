@@ -10,10 +10,10 @@ root.geometry('600x400')
 root.title('首都クイズ')
 q = tkinter.Label(root,
     text=f'{question}の首都はどこ？',
-    font=('メイリオ', '24'))
+    font=('Helvetica', '24'))
 e = tkinter.Entry(root,
     width=10,
-    font=('メイリオ', '24'))
+    font=('Helvetica', '24'))
 
 def judge():
     if e.get() == capital[question]:
@@ -24,11 +24,11 @@ def judge():
 
 btn = tkinter.Button(root,
     text='解答',
-    font=('メイリオ', '24'),
+    font=('Helvetica', '24'),
     command=judge)
 result = tkinter.Label(root,
     text='',
-    font=('メイリオ', '24'))
+    font=('Helvetica', '24'))
 q.pack(pady=10)
 e.pack(pady=10)
 btn.pack(pady=10)
