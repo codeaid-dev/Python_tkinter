@@ -29,7 +29,7 @@ def create():
 
 root = tkinter.Tk()
 root.title('パスワード生成')
-root.geometry('400x200')
+root.geometry('600x300')
 
 f1 = tkinter.Frame(root)
 f1.pack(pady=5)
@@ -43,6 +43,6 @@ btn = tkinter.Button(root, text='生成', font=FONT, command=create)
 btn.pack(pady=5)
 
 result = tkinter.Label(root, text='ここに表示',font=FONT2)
-result.pack(pady=10)
+result.pack(pady=20)
 
 root.mainloop()
