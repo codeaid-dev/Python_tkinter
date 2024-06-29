@@ -26,7 +26,7 @@ def calc():
 
 root = tkinter.Tk()
 root.title('割り勘計算')
-root.geometry('400x400')
+root.geometry('500x500')
 
 f1 = tkinter.Frame(root)
 f1.pack(pady=5)
