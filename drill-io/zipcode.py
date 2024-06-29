@@ -38,7 +38,7 @@ with open('27OSAKA.csv', 'r', encoding='shift-jis') as f:
 
 root = tkinter.Tk()
 root.title('大阪府-郵便番号検索')
-root.geometry('500x200')
+root.geometry('600x200')
 
 f1 = tkinter.Frame(root)
 f1.pack(pady=5)
