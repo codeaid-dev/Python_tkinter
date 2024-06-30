@@ -41,7 +41,7 @@ for i in range(len(colors)):
     c.grid(row=0, column=i)
 b = tkinter.Button(root, text='作れる色', command=create, font=('Helvetica',24))
 b.pack()
-l = tkinter.Label(root, text='ここに表示', font=('Helvetica',32))
+l = tkinter.Label(root, text='ここに表示', font=('Helvetica',24))
 l.pack()
 
 root.mainloop()
