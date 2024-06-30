@@ -101,6 +101,8 @@ def read(value):
 
 def save():
     global modified
+    if lm['text'] == '':
+        return
     new = True
     for option in query():
         if created == option['created']:
