@@ -27,7 +27,7 @@ def draw():
     cvs.create_text(250,250,text=finish,
                     fill='black',font=('Helvetica',40))
 
-def suffle():
+def shuffle():
     tiles.clear()
     while len(tiles) < 16:
         c = random.choice(colors)
@@ -56,7 +56,7 @@ def main():
     timer += 1
     draw()
     if proc == 0:
-        suffle()
+        shuffle()
         proc = 1
 #    if proc == 1:
 #        print('1枚目')
