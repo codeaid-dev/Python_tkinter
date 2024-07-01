@@ -1,15 +1,17 @@
 import tkinter
-import random
+import random,time
 
 side = 125
 one, two = None, None
 timer = 0
-proc = 0
-stats = [0]*16
+proc = 0 #0:初期状態(ゲームはじめ), 1:1枚目(0枚表示), 2:2枚目(1枚表示), 3:2枚表示
+stats = [0]*16 #0:黒い状態, 1:色表示, 2:揃っている
 colors = ['red','green','blue','yellow','magenta','cyan','brown','orange']
 tiles = []
+finish = ''
 
 def draw():
+    global finish
     cvs.delete('all')
     for i in range(16):
         x1 = i%4*side
@@ -20,6 +22,10 @@ def draw():
             cvs.create_rectangle(x1,y1,x2,y2,fill='black',outline='white')
         if stats[i] == 1 or stats[i] == 2:
             cvs.create_rectangle(x1,y1,x2,y2,fill=tiles[i],outline='white')
+    if stats.count(2) == 16 and finish == '':
+        finish = f'{time.time()-start:.2f}秒'
+    cvs.create_text(250,250,text=finish,
+                    fill='black',font=('Helvetica',40))
 
 def suffle():
     tiles.clear()
@@ -56,14 +62,15 @@ def main():
 #        print('1枚目')
 #    if proc == 2:
 #        print('2枚目')
-    if proc == 3 and timer == 5:
+    if proc == 3:
         if tiles[one] == tiles[two]:
             stats[one] = 2
             stats[two] = 2
-        else:
+            proc = 1
+        elif timer == 5:
             stats[one] = 0
             stats[two] = 0
-        proc = 1
+            proc = 1
     root.after(200,main)
 
 root = tkinter.Tk()
@@ -74,5 +81,6 @@ root.bind('<Button>',click)
 cvs = tkinter.Canvas(root,width=500,height=500,bg='white')
 cvs.pack()
 
+start = time.time()
 main()
 root.mainloop()
