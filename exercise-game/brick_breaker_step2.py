@@ -1,0 +1,79 @@
+import tkinter,random
+
+class Brick:
+    def __init__(self,x,y,w,h):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+
+class Ball:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+        self.dx = random.randint(-3,3)
+        self.dy = random.randint(2,4)
+    def collide(self,obj):
+        if self.x+10>obj.x and self.x<obj.x+obj.w:
+            if self.y+10>obj.y and self.y<obj.y+obj.h:
+                return True
+        return False
+
+key = ''
+def key_down(e):
+    global key
+    key = e.keysym
+def key_up(e):
+    global key
+    key = ''
+
+over=False
+start=False
+def main():
+    global start,over
+    if over:
+        fnt=('Times New Roman',30,'bold')
+        cvs.create_text(300,400,text='GAME OVER',fill='white',font=fnt)
+        return
+    if key == 'Left':
+        cvs.move(bar.id,-5,0)
+        bar.x -= 5
+    if key == 'Right':
+        cvs.move(bar.id,5,0)
+        bar.x += 5
+    if key == 'space':
+        start = True
+    if start:
+        cvs.coords(ball.id,ball.x,ball.y,
+                   ball.x+10,ball.y+10)
+        ball.x += ball.dx
+        ball.y += ball.dy
+    if ball.x<0 or ball.x>590:
+        ball.dx *= -1
+    if ball.y<0:
+        ball.dy *= -1
+    if ball.y>790:
+        over = True
+    if ball.collide(bar):
+        ball.dy = -abs(ball.dy)
+
+    root.after(10, main)
+
+root = tkinter.Tk()
+root.title('ブロック崩し')
+root.bind('<KeyPress>', key_down)
+root.bind('<KeyRelease>', key_up)
+root.geometry('600x800')
+cvs = tkinter.Canvas(root,width=600,height=800,bg='black')
+cvs.pack()
+
+bar = Brick(275,780,50,10)
+bar.id = cvs.create_rectangle(bar.x,bar.y,
+                              bar.x+bar.w,bar.y+bar.h,
+                              fill='white',tags='bar')
+ball = Ball(295,395)
+ball.id = cvs.create_oval(ball.x,ball.y,
+                          ball.x+10,ball.y+10,
+                          fill='white',tags='ball')
+main()
+root.mainloop()
