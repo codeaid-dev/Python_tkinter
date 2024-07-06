@@ -66,7 +66,9 @@ def main():
     if ball_y-5<0:
         dir *= -1
     if colliderect(bar_x,bar_y,ball_x,ball_y,50,10):
-        dir = -(90 + (bar_x+25 - ball_x) / 50*80)
+        #dir = -(90 + (bar_x+25 - ball_x) / 50*80)
+        position = (bar_x+50 - ball_x) / 50 #バーの当たった位置(0~1)
+        dir = -(position*100+40) #反射後の角度(40~140)
     if ball_y+5>800:
         over = True
 
