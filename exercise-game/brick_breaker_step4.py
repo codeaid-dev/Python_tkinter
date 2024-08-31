@@ -13,11 +13,26 @@ class Ball:
         self.y = y
         self.dx = random.randint(-3,3)
         self.dy = random.randint(2,4)
+        self.r = 5
     def collide(self,obj):
-        if self.x+10>obj.x and self.x<obj.x+obj.w:
-            if self.y+10>obj.y and self.y<obj.y+obj.h:
-                return True
-        return False
+        if self.x < obj.x:
+            closestX = obj.x
+        elif self.x > obj.x + obj.w:
+            closestX = obj.x + obj.w
+        else:
+            closestX = self.x
+        
+        if self.y < obj.y:
+            closestY = obj.y
+        elif self.y > obj.y + obj.h:
+            closestY = obj.y + obj.h
+        else:
+            closestY = self.y
+        
+        dx = self.x - closestX
+        dy = self.y - closestY
+        distance = (dx**2 + dy**2)**0.5
+        return distance < self.r
 
 def mapping(ball_x,before_min,before_max,after_min,after_max):
     return after_min + (after_max-after_min) * ((ball_x-before_min) / (before_max-before_min))
@@ -58,15 +73,15 @@ def main():
     if key == 'space':
         start = True
     if start:
-        cvs.coords(ball.id,ball.x,ball.y,
-                   ball.x+10,ball.y+10)
+        cvs.coords(ball.id,ball.x-ball.r,ball.y-ball.r,
+                   ball.x+ball.r,ball.y+ball.r)
         ball.x += ball.dx
         ball.y += ball.dy
-    if ball.x<0 or ball.x>590:
+    if ball.x<ball.r or ball.x>600-ball.r:
         ball.dx *= -1
-    if ball.y<0:
+    if ball.y<ball.r:
         ball.dy *= -1
-    if ball.y>790:
+    if ball.y>800-ball.r:
         over = True
     if ball.collide(bar):
         ball.dy = -abs(ball.dy)
@@ -106,8 +121,8 @@ bar.id = cvs.create_rectangle(bar.x,bar.y,
                               bar.x+bar.w,bar.y+bar.h,
                               fill='white',tags='bar')
 ball = Ball(295,395)
-ball.id = cvs.create_oval(ball.x,ball.y,
-                          ball.x+10,ball.y+10,
+ball.id = cvs.create_oval(ball.x-ball.r,ball.y-ball.r,
+                          ball.x+ball.r,ball.y+ball.r,
                           fill='white',tags='ball')
 main()
 root.mainloop()
