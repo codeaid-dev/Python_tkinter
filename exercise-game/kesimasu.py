@@ -98,10 +98,10 @@ def judge():
             b += 1
     if w == 9 or b == 9:
         cvs.create_text(cvs.winfo_width()/2,
-                        cvs.winfo_height()/2,
-                        text=f'全部消えた\n{time.time()-start:.2f} sec.',
-                        fill='red',font=('Helvetica',30),
-                        tags='result')
+            cvs.winfo_height()/2,
+            text=f'全部消えた\n{time.time()-start:.2f} sec.',
+            fill='red',font=('Helvetica',30),
+            tags='result')
         finished = True
 
 root = tkinter.Tk()
