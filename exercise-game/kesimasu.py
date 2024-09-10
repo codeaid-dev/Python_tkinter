@@ -99,7 +99,7 @@ def judge():
     if w == 9 or b == 9:
         cvs.create_text(cvs.winfo_width()/2,
             cvs.winfo_height()/2,
-            text=f'全部消えた\n{time.time()-start:.2f} sec.',
+            text=f'全部揃った\n{time.time()-start:.2f} sec.',
             fill='red',font=('Helvetica',30),
             tags='result')
         finished = True
