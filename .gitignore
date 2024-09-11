@@ -5,3 +5,4 @@ __pycache__
 sample.json
 books.json
 test*
+/images/
