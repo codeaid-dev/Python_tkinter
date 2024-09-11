@@ -10,7 +10,7 @@ class Sprite:
     def is_hit(self,sprite):
         subx = abs(sprite.x-self.x)
         suby = abs(sprite.y-self.y)
-        dist = (subx**2 + suby**2) ** 0.5
+        dist = ((sprite.x-self.x)**2 + (sprite.y-self.y)**2) ** 0.5
         return dist <= self.s/2 + sprite.s/2
 
 enemys = []
@@ -82,7 +82,7 @@ def main():
         enemys.append(Sprite(random.randint(0,500),0,random.randint(10,50)))
 
     for e in enemys:
-        e.y += 5
+        e.y += 1
         if e.id != None:
             if e.y > 800:
                 enemys.remove(e)
