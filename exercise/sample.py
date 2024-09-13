@@ -5,6 +5,7 @@ root.title('サンプル')
 root.geometry('800x600')
 
 cvs = tkinter.Canvas(root, width=800, height=600)
+cvs.pack()
 cvs.create_line(50,50,200,200,fill='red',width=5)
 cvs.create_rectangle(200,50,300,200,fill='blue',outline='yellow',width=5)
 cvs.create_oval(305,50,405,200,fill='green',outline='gold',width=5)
@@ -30,5 +31,4 @@ var2.set(True)
 c = tkinter.Checkbutton(cvs, text='チェックボックス',font=FNT,variable=var2)
 c.place(x=450,y=480)
 
-cvs.pack()
 root.mainloop()
