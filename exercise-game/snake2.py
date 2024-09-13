@@ -1,16 +1,20 @@
-import tkinter
-import random
-
-key = 'Down'
-def key_down(e):
-    global key
-    key = e.keysym
+import tkinter, random
 
 w,h = 20,20
 snake = []
 head=(int(w/2),int(h/2))
 snake.append(head)
 over=False
+
+key = 'Down'
+def key_down(e):
+    global key
+    key = e.keysym
+
+def init_snake():
+    for i in range(5):
+        snake.insert(0,head)
+
 foods = []
 def init_foods():
     for i in range(10):
@@ -23,11 +27,22 @@ def init_foods():
 def draw():
     cvs.delete('snake')
     for body in snake:
-        cvs.create_rectangle(body[0]*30,body[1]*30,body[0]*30+30,body[1]*30+30,fill='white',tags='snake')
+        cvs.create_rectangle(body[0]*30,
+                             body[1]*30,
+                             body[0]*30+30,
+                             body[1]*30+30,
+                             fill='white',
+                             tags='snake')
     for food in foods:
-        cvs.create_oval(food[0]*30,food[1]*30,food[0]*30+30,food[1]*30+30,fill='red',width=0,tags=f'{food[0]},{food[1]}')
+        cvs.create_oval(food[0]*30,
+                        food[1]*30,
+                        food[0]*30+30,
+                        food[1]*30+30,
+                        fill='red',
+                        width=0,
+                        tags=f'{food[0]},{food[1]}')
 
-def move():
+def eat():
     for food in foods:
         if head == food:
             cvs.delete(f'{food[0]},{food[1]}')
@@ -39,7 +54,8 @@ def main():
     global head,over
     if over:
         fnt=('Times New Roman',30,'bold')
-        cvs.create_text(300,300,text='GAME OVER',fill='white',font=fnt)
+        cvs.create_text(300,300,text='GAME OVER',
+                        fill='orange',font=fnt)
         return
     if key == 'Up':
         head = (snake[0][0], snake[0][1]-1)
@@ -55,7 +71,7 @@ def main():
 
     snake.insert(0,head)
     if head in foods:
-        move()
+        eat()
     else:
         snake.pop()
     draw()
@@ -68,6 +84,7 @@ root.geometry('600x600')
 root.bind('<KeyPress>', key_down)
 cvs = tkinter.Canvas(root, width=600, height=600, bg='black')
 cvs.pack()
+init_snake()
 init_foods()
 main()
 root.mainloop()
