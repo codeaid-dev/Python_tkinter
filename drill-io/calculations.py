@@ -1,6 +1,5 @@
 import tkinter, random
 
-WIDTH,HEIGHT = 400,200
 FONT20 = ('Helvetica',20)
 FONT50 = ('Helvetica',50)
 left,right = 0,0
@@ -18,10 +17,7 @@ def answer(text):
         if not starting:
             return
         global correct,incorrect,operator
-        if (operator == 1 and operations[0] == text) or \
-            (operator == 2 and operations[1] == text) or \
-            (operator == 3 and operations[2] == text) or \
-            (operator == 4 and operations[3] == text):
+        if operator == text:
             correct += 1
         else:
             incorrect += 1
@@ -83,7 +79,7 @@ def make_question():
 
 root = tkinter.Tk()
 root.title("一桁演算クイズ")
-root.geometry('500x350')
+root.geometry('500x400')
 root.bind('<Button>', start)
 labelP = tkinter.Label(root, text='60', font=FONT50)
 labelP.pack(pady=10)
@@ -92,26 +88,31 @@ labelQ.pack(pady=10)
 operations = ['+','-','×','÷']
 operators = tkinter.Frame(root)
 operators.pack(pady=10)
+virtual_button = tkinter.PhotoImage(width=1,height=1)
 btn1 = tkinter.Button(operators, text=operations[0],
-                      command=answer(operations[0]),
-                      width=2,
+                      image=virtual_button,width=50,height=50,compound='c',
+                      command=answer(1),
+                      bg='#909090',
                       font=FONT50)
-btn1.grid(row=0, column=0)
+btn1.pack(side=tkinter.LEFT, padx=10)
 btn2 = tkinter.Button(operators, text=operations[1],
-                      command=answer(operations[1]),
-                      width=2,
+                      image=virtual_button,width=50,height=50,compound='c',
+                      command=answer(2),
+                      bg='#909090',
                       font=FONT50)
-btn2.grid(row=0, column=1)
+btn2.pack(side=tkinter.LEFT, padx=10)
 btn3 = tkinter.Button(operators, text=operations[2],
-                      command=answer(operations[2]),
-                      width=2,
+                      image=virtual_button,width=50,height=50,compound='c',
+                      command=answer(3),
+                      bg='#909090',
                       font=FONT50)
-btn3.grid(row=0, column=2)
+btn3.pack(side=tkinter.LEFT, padx=10)
 btn4 = tkinter.Button(operators, text=operations[3],
-                      command=answer(operations[3]),
-                      width=2,
+                      image=virtual_button,width=50,height=50,compound='c',
+                      command=answer(4),
+                      bg='#909090',
                       font=FONT50)
-btn4.grid(row=0, column=3)
+btn4.pack(side=tkinter.LEFT, padx=10)
 result = tkinter.Label(root, text=f'正解数: {correct} 不正解数: {incorrect}', font=FONT20)
 result.pack(pady=10)
 
