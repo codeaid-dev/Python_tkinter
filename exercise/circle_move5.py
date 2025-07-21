@@ -24,7 +24,7 @@ def move():
         en.x += en.speedx
         en.y += en.speedy
         cvs.coords(en.id,en.x,en.y,en.x+50,en.y+50)
-    root.after(10, move)
+    root.after(16, move)
 
 root = tkinter.Tk()
 root.title('円のオブジェクト化')

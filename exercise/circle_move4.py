@@ -19,7 +19,7 @@ def move():
         x[i] += speedx[i]
         y[i] += speedy[i]
         cvs.coords(id[i],x[i],y[i],x[i]+50,y[i]+50)
-    root.after(10, move)
+    root.after(16, move)
 
 root = tkinter.Tk()
 root.title('円の色を変える')

@@ -16,7 +16,7 @@ def move():
                     fill='black',
                     width=0,
                     tag='circle')
-    root.after(10, move)
+    root.after(16, move) # 約60fps（1000ms / 60 ≒ 16）
 
 root = tkinter.Tk()
 root.title('円を動かす')

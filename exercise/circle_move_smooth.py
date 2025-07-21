@@ -4,29 +4,27 @@ class Circle:
     pass
 
 player = None
-key = ''
+keys = set()
 def key_down(e):
-    global key
-    key = e.keysym
+    keys.add(e.keysym)
 def key_up(e):
-    global key
-    key = ''
+    keys.discard(e.keysym)
 
 def move():
-    if key == 'Up':
+    if 'Up' in keys:
         player.speedy -= 0.1
-    if key == 'Down':
+    if 'Down' in keys:
         player.speedy += 0.1
-    if key == 'Left':
+    if 'Left' in keys:
         player.speedx -= 0.1
-    if key == 'Right':
+    if 'Right' in keys:
         player.speedx += 0.1
     player.speedx *= 0.98
     player.speedy *= 0.98
     player.x += player.speedx
     player.y += player.speedy
     cvs.coords(player.id,player.x,player.y,player.x+30,player.y+30)
-    root.after(10,move)
+    root.after(16,move) # 約60fps（1000ms / 60 ≒ 16）
 
 root = tkinter.Tk()
 root.title('円をスムーズに動かす')

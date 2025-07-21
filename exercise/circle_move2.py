@@ -12,7 +12,7 @@ def move():
     x += speedx
     y += speedy
     cvs.coords('circle',x,y,x+50,y+50)
-    root.after(10, move)
+    root.after(16, move)
 
 root = tkinter.Tk()
 root.title('円を動かす2')
