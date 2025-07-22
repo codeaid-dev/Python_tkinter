@@ -7,19 +7,17 @@ class Brick:
         self.w = w
         self.h = h
 
-key = ''
+keys = set()
 def key_down(e):
-    global key
-    key = e.keysym
+    keys.add(e.keysym)
 def key_up(e):
-    global key
-    key = ''
+    keys.discard(e.keysym)
 
 def main():
-    if key == 'Left':
+    if 'Left' in keys:
         cvs.move(bar.id,-5,0)
         bar.x -= 5
-    if key == 'Right':
+    if 'Right' in keys:
         cvs.move(bar.id,5,0)
         bar.x += 5
 

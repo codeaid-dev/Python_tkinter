@@ -37,13 +37,11 @@ class Ball:
 def mapping(ball_x,before_min,before_max,after_min,after_max):
     return after_min + (after_max-after_min) * ((ball_x-before_min) / (before_max-before_min))
 
-key = ''
+keys = set()
 def key_down(e):
-    global key
-    key = e.keysym
+    keys.add(e.keysym)
 def key_up(e):
-    global key
-    key = ''
+    keys.discard(e.keysym)
 
 bricks = []
 for y in range(6):
@@ -64,13 +62,13 @@ def main():
         fnt=('Times New Roman',30,'bold')
         cvs.create_text(300,400,text='GAME CLEAR',fill='white',font=fnt)
         return
-    if key == 'Left':
+    if 'Left' in keys:
         cvs.move(bar.id,-5,0)
         bar.x -= 5
-    if key == 'Right':
+    if 'Right' in keys:
         cvs.move(bar.id,5,0)
         bar.x += 5
-    if key == 'space':
+    if 'space' in keys:
         start = True
     if start:
         cvs.coords(ball.id,ball.x-ball.r,ball.y-ball.r,
