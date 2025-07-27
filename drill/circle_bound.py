@@ -11,8 +11,8 @@ def main():
     ball.y += ball.speed
     ball.speed += ball.gravity
     if ball.y+100>500:
-        ball.speed *= -0.8
-        #ball.speed *= -0.99
+        # ball.speed *= -0.85
+        ball.speed *= -0.98
         ball.y = 400
     cvs.coords(ball.id,ball.x,ball.y,ball.x+100,ball.y+100)
     root.after(10,main)
