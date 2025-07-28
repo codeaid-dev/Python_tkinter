@@ -28,7 +28,7 @@ def move():
     root.after(10, move)
 
 root = tkinter.Tk()
-root.title('動く円をクリック')
+root.title('動く複数の円をクリック')
 root.bind('<Button>',pressed)
 cvs = tkinter.Canvas(root, width=500,
                     height=500,
