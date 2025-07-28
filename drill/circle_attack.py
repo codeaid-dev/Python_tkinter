@@ -1,43 +1,66 @@
-import tkinter,random
+import tkinter,random, time
 
-bx,by = 250,250
-dx,dy = 0,0
-score = 0
-count = 0
-over = False
+class Circle:
+    def __init__(self):
+        self.x = random.randint(0,450)
+        self.y = random.randint(0,450)
+        self.dx = random.randint(1,5)
+        self.dy = random.randint(1,5)
+        self.interval = random.randint(1,100)
+
+circles = []
+start = None
+finish = False
 
 def pressed(event):
-    global score
-    dist = ((bx-event.x)**2+(by-event.y)**2)**0.5
-    if dist < 25:
-        score += 1
+    global finish
+    count = 0
+    for ball in circles:
+        dist = ((ball.x+25-event.x)**2+(ball.y+25-event.y)**2)**0.5
+        if dist < 25:
+            ball.dx = 0
+            ball.dy = 0
+            ball.interval = 0
+    for ball in circles:
+        if ball.interval == 0:
+            count += 1
+    if count == len(circles) and not finish:
+        finish = True
+        spend = time.time() - start
+        cvs.create_text(250,250,text=f'経過時間: {spend:.0f}秒',fill='red',font=('Helvetica',40))
 
 def main():
-    global bx,by,dx,dy,count,over
-    if over:
+    if finish:
         return
-    if count % 100 == 0:
-        nx = random.randint(25,475)
-        ny = random.randint(25,475)
-        dx = (nx-bx)/100
-        dy = (ny-by)/100
-    count += 1
-    if count >= 1000:
-        over = True
-        cvs.create_text(250,50,text='GAME OVER',fill='red',font=('Helvetica',40))
-    bx += dx
-    by += dy
-    cvs.coords(ball,bx-25,by-25,bx+25,by+25)
-    cvs.delete('score')
-    cvs.create_text(250,250,text=f'Score:{score}',fill='black',font=('Helvetica',40),tags='score')
+    for ball in circles:
+        ball.x += ball.dx
+        ball.y += ball.dy
+        if ball.x > 450 or ball.x < 0:
+            ball.dx *= -1
+        if ball.y > 450 or ball.y < 0:
+            ball.dy *= -1
+
+        if ball.interval != 0:
+            ball.interval += 1
+
+        if ball.interval != 0 and ball.interval % 100 == 0:
+            nx = random.randint(0,450)
+            ny = random.randint(0,450)
+            ball.dx = (nx-ball.x)/40
+            ball.dy = (ny-ball.y)/40
+        cvs.coords(ball.id,ball.x,ball.y,ball.x+50,ball.y+50)
+
     root.after(10,main)
 
 root = tkinter.Tk()
-root.title('円たたき')
+root.title('ランダムに動く複数の円をクリック')
 root.bind('<Button>', pressed)
 cvs = tkinter.Canvas(root,width=500,height=500,bg='white')
 cvs.pack()
-ball = cvs.create_oval(bx-25,by-25,bx+25,by+25,fill='red',width=0)
-cvs.create_text(250,250,text=f'Score:{score}',fill='white',font=('Helvetica',40),tags='score')
+for i in range(4):
+    ball = Circle()
+    ball.id = cvs.create_oval(ball.x,ball.y,ball.x+50,ball.y+50,fill='black',width=0)
+    circles.append(ball)
+start = time.time()
 main()
 root.mainloop()
