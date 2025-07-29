@@ -6,7 +6,7 @@ class Circle:
         self.size = random.randint(5,50)
         self.x = random.randint(0,500-self.size)
         self.y = random.randint(0,500-self.size)
-        self.speedy = random.randint(1,6)
+        self.speedy = random.randint(1,5)
 
 circles = []
 
@@ -16,7 +16,7 @@ def move():
             en.size = random.randint(5,50)
             en.x = random.randint(0,500-en.size)
             en.y = -en.size
-            en.speedy = random.randint(1,6)
+            en.speedy = random.randint(1,5)
         en.y += en.speedy
         cvs.coords(en.id,en.x,en.y,
                    en.x+en.size,en.y+en.size)
