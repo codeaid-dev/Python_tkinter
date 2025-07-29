@@ -28,15 +28,21 @@ def move():
             en.speedy *= -1
         en.x += en.speedx
         en.y += en.speedy
-        cvs.coords(en.id,en.x,en.y,en.x+50,en.y+50)
+        # cvs.coords(en.id,en.x,en.y,en.x+50,en.y+50)
         if en.interval != 0:
             en.interval += 1
         if en.interval!=0 and en.interval%100==0:
             en.showing = False if en.showing else True
         if en.showing:
-            cvs.itemconfig(en.id,fill="black")
+            # cvs.itemconfig(en.id,fill="black")
+            cvs.delete(en.id)
+            en.id = cvs.create_oval(en.x,en.y,en.x+50,en.y+50,
+                        fill='black',
+                        width=0,
+                        tag='circle')
         else:
-            cvs.itemconfig(en.id,fill="white")
+            # cvs.itemconfig(en.id,fill="white")
+            cvs.delete(en.id)
     root.after(10, move)
 
 root = tkinter.Tk()
