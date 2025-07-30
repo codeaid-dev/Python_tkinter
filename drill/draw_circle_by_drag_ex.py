@@ -12,7 +12,7 @@ def drag(e):
     cvs.coords(id,x-dst,y-dst,x+dst,y+dst)
 
 root = tkinter.Tk()
-root.title('ドラッグして円を描く(改造)')
+root.title('ドラッグして円を描く')
 root.geometry('500x500')
 root.bind('<Button1-Motion>',drag)
 root.bind('<Button-1>',press)
