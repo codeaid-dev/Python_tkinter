@@ -12,7 +12,7 @@ def drag(e):
     y = e.y
 
 root = tkinter.Tk()
-root.title('ドラッグして線を描く')
+root.title('マウスドラッグで線を描く')
 root.geometry('500x500')
 root.bind('<Button1-Motion>',drag)
 root.bind('<Button-1>',press)
