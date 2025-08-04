@@ -1,7 +1,7 @@
 import tkinter
 
 root = tkinter.Tk()
-root.title('円を縦横に並べる')
+root.title('円を縦横に並べる①')
 cvs = tkinter.Canvas(root, width=500, height=500, bg='gray')
 cvs.pack()
 cnt = 25
