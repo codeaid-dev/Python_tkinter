@@ -15,7 +15,7 @@ def main():
         ball.speed *= -0.98
         ball.y = 400
     cvs.coords(ball.id,ball.x,ball.y,ball.x+100,ball.y+100)
-    root.after(10,main)
+    root.after(16,main)
 
 root = tkinter.Tk()
 root.title('弾む円')
