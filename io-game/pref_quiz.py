@@ -1,6 +1,6 @@
-import json
-import tkinter
-import random
+import tkinter, json, random
+
+FONT = ('sans-serif', 16)
 
 with open('prefectures.json', 'r', encoding='utf-8') as f:
     prefs = json.loads(f.read())
@@ -30,20 +30,20 @@ q = tkinter.Label(root, image=prefs[0]['img'])
 q.pack()
 btn1 = tkinter.Button(root,
         text='次の問題',
-        font=('Helvetica', 16),
+        font=FONT,
         command=questions)
 btn1.pack(side=tkinter.BOTTOM, pady=10)
 btn2 = tkinter.Button(root,
         text='解答',
-        font=('Helvetica', 16),
+        font=FONT,
         command=judge)
 btn2.pack(side=tkinter.BOTTOM, pady=10)
 answer = tkinter.Entry(width=20,
-            font=('Helvetica', 16))
+            font=FONT)
 answer.pack(side=tkinter.BOTTOM, pady=10)
 result = tkinter.Label(root,
             text='結果表示',
-            font=('Helvetica', 16))
+            font=FONT)
 result.pack(side=tkinter.BOTTOM)
 
 questions()

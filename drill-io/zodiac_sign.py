@@ -1,6 +1,6 @@
 import tkinter
 
-FONT20 = ('sans-serif',20)
+FONT = ('sans-serif',20)
 seiza = ['山羊座','水瓶座','魚座','牡羊座','牡牛座','双子座','蟹座','獅子座','乙女座','天秤座','蠍座','射手座']
 end_date = [19,18,20,19,20,21,22,22,22,23,22,21]
 month = [i for i in range(1,13)]
@@ -19,7 +19,7 @@ def zodiac():
     else:
         msg = f'{m}月{d}日は{seiza[m%12]}です'
 
-    result['text'] = msg
+    result_label['text'] = msg
 
 root = tkinter.Tk()
 root.title("あなたの星座")
@@ -33,7 +33,7 @@ month_iv.set(month[0])
 month_menu = tkinter.OptionMenu(frame, month_iv, *month)
 # month_menu.config(font=FONT20)
 month_menu.grid(row=0, column=0)
-month_label = tkinter.Label(frame, text='月', font=FONT20)
+month_label = tkinter.Label(frame, text='月', font=FONT)
 month_label.grid(row=0, column=1)
 
 date_iv = tkinter.IntVar()
@@ -41,15 +41,15 @@ date_iv.set(date[0])
 date_menu = tkinter.OptionMenu(frame, date_iv, *date)
 # date_menu.config(font=FONT20)
 date_menu.grid(row=0, column=2)
-date_label = tkinter.Label(frame, text='日', font=FONT20)
+date_label = tkinter.Label(frame, text='日', font=FONT)
 date_label.grid(row=0, column=3)
 
 button = tkinter.Button(root, text='表示',
                       command=zodiac,
                       width=2,
-                      font=FONT20)
+                      font=FONT)
 button.pack(pady=10)
-result = tkinter.Label(root, text='ここに表示', font=FONT20)
-result.pack(pady=10)
+result_label = tkinter.Label(root, text='ここに表示', font=FONT)
+result_label.pack(pady=10)
 
 root.mainloop()
