@@ -1,6 +1,7 @@
 import tkinter, random
 
 flags = ['Belgium','Bulgaria','Denmark','Finland','Germany','Hungary','Italy','Monaco','Poland','Sweden']
+FONT = ('sans-serif', 20)
 
 def next():
     global correct,img
@@ -36,17 +37,17 @@ frm.pack(pady=5)
 result = tkinter.Label(root,
             text='Result here',
             fg='orange',
-            font=('helvetica', 20))
+            font=FONT)
 result.pack(pady=5)
 
 btn1 = tkinter.Button(root,
         text='Answer',
-        font=('helvetica', 20),
+        font=FONT,
         command=judge)
 btn1.pack(pady=10)
 btn2 = tkinter.Button(root,
         text='Next',
-        font=('helvetica', 20),
+        font=FONT,
         command=next)
 btn2.pack(pady=5)
 

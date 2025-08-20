@@ -12,6 +12,7 @@ kanji = {
     '積':'images/seki2.png',
     '績':'images/seki1.png'
 }
+FONT = ('sans-serif', 16)
 GRID_SIZE = 4
 CELL_SIZE = 125
 class Tile:
@@ -86,19 +87,19 @@ cvs = tkinter.Canvas(root,width=500,height=500,bg='black')
 cvs.pack()
 result = tkinter.Label(root,
             text='結果表示',
-            font=('Helvetica', 16))
+            font=FONT)
 result.pack(pady=10)
 answer = tkinter.Entry(width=20,
-            font=('Helvetica', 16))
+            font=FONT)
 answer.pack(pady=10)
 btn1 = tkinter.Button(root,
         text='解答',
-        font=('Helvetica', 16),
+        font=FONT,
         command=judge)
 btn1.pack(pady=10)
 btn2 = tkinter.Button(root,
         text='次の問題',
-        font=('Helvetica', 16),
+        font=FONT,
         command=next)
 btn2.pack(pady=10)
 

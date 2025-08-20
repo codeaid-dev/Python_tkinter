@@ -1,6 +1,6 @@
 import tkinter
 
-FONT = ('Helvetica',32)
+FONT = ('sans-serif',32)
 
 def create():
     r = 1 if bv[0].get() else 0

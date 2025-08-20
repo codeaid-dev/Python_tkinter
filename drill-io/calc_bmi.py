@@ -23,12 +23,14 @@ def bmi():
             result = '肥満(2度)'
         else:
             result = '肥満(3度)'
-        result_label.config(foreground='black',background='white')
-        result_label['text'] = f'BMI値：{num:.2f}　判定：{result}です。'
+        # result_label.config(foreground='black',background='white')
+        result_label.config(fg=default_color)
+        result_label.config(text=f'BMI値：{num:.2f}　判定：{result}です。')
         result_label.update()
     except ValueError:
-        result_label.config(foreground='red',background=root.cget('bg'))
-        result_label['text'] = '有効な値を入力してください。'
+        # result_label.config(foreground='red',background=root.cget('bg'))
+        result_label.config(fg='red')
+        result_label.config(text='有効な値を入力してください。')
         result_label.update()
 
 root = tkinter.Tk()
@@ -50,6 +52,7 @@ measurement = tkinter.Button(root, text='測定', font=FONT, command=bmi)
 measurement.pack(pady=10)
 
 result_label = tkinter.Label(root, text='ここに表示', font=FONT)
+default_color = result_label.cget('fg')
 result_label.pack(pady=10)
 
 root.mainloop()

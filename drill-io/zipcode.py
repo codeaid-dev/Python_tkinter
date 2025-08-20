@@ -1,6 +1,6 @@
 import tkinter, csv
 
-FONT = ('Helvetica',16)
+FONT = ('sans-serif',16)
 
 def ziptoadd():
     z1 = zip1.get()

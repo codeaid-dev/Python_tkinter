@@ -1,6 +1,7 @@
 import tkinter
 import random
 
+FONT = ('sans-serif', 20)
 images = []
 def pon():
     #0:グー、1:チョキ、2:パー
@@ -34,16 +35,16 @@ comimg = cvs.create_image(125,125,image=com)
 you = images[0].subsample(2)
 youimg = cvs.create_image(375,125,image=you)
 
-btn = tkinter.Button(root, text='ぽん', font=('Helvetica', 20), command=pon)
+btn = tkinter.Button(root, text='ぽん', font=FONT, command=pon)
 btn.pack(side=tkinter.BOTTOM, pady=10)
 
 frm = tkinter.Frame(root)
 frm.pack(side=tkinter.BOTTOM)
 intvar = tkinter.IntVar()
 intvar.set(0)
-rb1 = tkinter.Radiobutton(frm, text='グー', value=0, variable=intvar, font=('Helvetica',20))
-rb2 = tkinter.Radiobutton(frm, text='チョキ', value=1, variable=intvar, font=('Helvetica',20))
-rb3 = tkinter.Radiobutton(frm, text='パー', value=2, variable=intvar, font=('Helvetica',20))
+rb1 = tkinter.Radiobutton(frm, text='グー', value=0, variable=intvar, font=FONT)
+rb2 = tkinter.Radiobutton(frm, text='チョキ', value=1, variable=intvar, font=FONT)
+rb3 = tkinter.Radiobutton(frm, text='パー', value=2, variable=intvar, font=FONT)
 rb1.grid(row=0, column=0)
 rb2.grid(row=0, column=1)
 rb3.grid(row=0, column=2)

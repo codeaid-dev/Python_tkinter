@@ -2,6 +2,7 @@ import tkinter
 import random
 
 capital = {'ギリシャ':'アテネ','オランダ':'アムステルダム','オーストリア':'ウィーン','モンゴル':'ウランバートル','カナダ':'オタワ','エジプト':'カイロ','オーストラリア':'キャンベラ','スウェーデン':'ストックホルム','日本':'東京','インド':'ニューデリー','ベトナム':'ハノイ','フランス':'パリ','ドイツ':'ベルリン','イギリス':'ロンドン','アメリカ':'ワシントン'}
+FONT = ('sans-serif', '24')
 
 question = random.choice(list(capital.keys()))
 
@@ -10,10 +11,10 @@ root.geometry('600x400')
 root.title('首都クイズ')
 q = tkinter.Label(root,
     text=f'{question}の首都はどこ？',
-    font=('Helvetica', '24'))
+    font=FONT)
 e = tkinter.Entry(root,
     width=10,
-    font=('Helvetica', '24'))
+    font=FONT)
 
 def judge():
     if e.get() == capital[question]:
@@ -24,11 +25,11 @@ def judge():
 
 btn = tkinter.Button(root,
     text='解答',
-    font=('Helvetica', '24'),
+    font=FONT,
     command=judge)
 result = tkinter.Label(root,
     text='',
-    font=('Helvetica', '24'))
+    font=FONT)
 q.pack(pady=10)
 e.pack(pady=10)
 btn.pack(pady=10)

@@ -48,11 +48,11 @@ def stop_rotation():
     stop_rotating = True
 
 rotate_button = tkinter.Button(root, text="回転",
-                               font=('Helvetica',50),
+                               font=('sans-serif',50),
                                command=start_rotation)
 rotate_button.pack(pady=10)
 stop_button = tkinter.Button(root, text="停止",
-                             font=('Helvetica',50),
+                             font=('sans-serif',50),
                              command=stop_rotation)
 stop_button.pack(pady=10)
 

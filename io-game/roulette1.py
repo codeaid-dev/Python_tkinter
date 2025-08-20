@@ -31,7 +31,7 @@ def start_rotation():
         rotate_image()
 
 rotate_button = tkinter.Button(root, text="回転",
-                               font=('Helvetica',50),
+                               font=('sans-serif',50),
                                command=start_rotation)
 rotate_button.pack(pady=10)
 

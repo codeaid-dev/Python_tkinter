@@ -1,7 +1,7 @@
 import tkinter, random
 
-FONT20 = ('Helvetica',20)
-FONT50 = ('Helvetica',50)
+FONT20 = ('sans-serif',20)
+FONT50 = ('sans-serif',50)
 left,right = 0,0
 operator = ''
 question = '''表示された数字の結果となる

@@ -30,6 +30,6 @@ for i in range(1,8):
 
 box = tkinter.PhotoImage(file='images/omikuji.png')
 kuji = cvs.create_image(150,150, image=box)
-button = tkinter.Button(root, text='おみくじを引く', font=('Helvetica', 20), command=uranai)
+button = tkinter.Button(root, text='おみくじを引く', font=('sans-serif', 20), command=uranai)
 button.pack(side=tkinter.BOTTOM, pady=10)
 root.mainloop()

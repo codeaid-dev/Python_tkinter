@@ -14,11 +14,12 @@ def aspect():
         g = gcd(width, height)
         rw = width // g
         rh = height // g
-        result_label.config(foreground='black',background='white')
-        result_label['text'] = f'{rw}:{rh}'
+        # result_label.config(foreground='black',background='white')
+        result_label.config(foreground=default_color)
+        result_label.config(text=f'{rw}:{rh}')
     except ValueError:
         result_label.config(foreground='red',background=root.cget('bg'))
-        result_label['text'] = '有効な値を入力してください。'
+        result_label.config(text='有効な値を入力してください。')
         result_label.update()
 
 root = tkinter.Tk()
@@ -40,6 +41,7 @@ calc = tkinter.Button(root, text='計算', font=FONT, command=aspect)
 calc.pack(pady=10)
 
 result_label = tkinter.Label(root, text='ここに結果を表示', font=FONT)
+default_color = result_label.cget('fg')
 result_label.pack(pady=10)
 
 root.mainloop()

@@ -2,7 +2,7 @@ import tkinter
 import os, sqlite3
 from contextlib import closing
 
-FONT = ('Helvetica',18)
+FONT = ('sans-serif',18)
 db = 'menu.db'
 
 def create():

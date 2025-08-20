@@ -3,7 +3,7 @@ import random, time
 
 alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 question = ''
-FONT = ('Helvetica', '24')
+FONT = ('sans-serif', '24')
 
 atari = random.randint(0,25)
 for i in range(26):

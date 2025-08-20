@@ -33,7 +33,7 @@ box = tkinter.PhotoImage(file='images/omikuji.png')
 kuji = tkinter.Label(root, image=box)
 button = tkinter.Button(root,
             text='おみくじを引く',
-            font=('Helvetica', 12),
+            font=('sans-serif', 12),
             command=uranai)
 kuji.pack(pady=10)
 button.pack(side=tkinter.BOTTOM, pady=10)

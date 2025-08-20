@@ -51,7 +51,7 @@ root.title('スロットマシーン')
 #root.geometry('500x300')
 
 resl = tkinter.Label(root, text=result,
-            font=('Helvetica', 16),
+            font=('sans-serif', 16),
             fg='red')
 resl.pack(pady=10)
 
@@ -71,13 +71,13 @@ for i in range(3):
     d.label = tkinter.Label(df, image=images[0])
     d.label.pack()
     d.button = tkinter.Button(df, text='ストップ',
-        font=('Helvetica', 16),
+        font=('sans-serif', 16),
         command=d.stop)
     d.button.pack()
     drums.append(d)
 
 s = tkinter.Button(root, text='スタート',
-                       font=('Helvetica', 30),
+                       font=('sans-serif', 30),
                        command=start)
 s.pack(pady=10)
 
