@@ -37,7 +37,7 @@ def judge():
 def enable_answer():
     num_entry1.config(state='normal')
     answer_button.config(state='normal')
-    num_label2.config(text='')
+    num_label2.config(text='覚えた数字を入力してください。')
 
 root = tkinter.Tk()
 root.title("数当て")
