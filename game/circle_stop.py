@@ -5,16 +5,18 @@ class Circle:
     def __init__(self):
         self.x = random.randint(0,450)
         self.y = random.randint(0,450)
-        self.speedx = random.randint(2,3)
-        self.speedy = random.randint(1,3)
+        self.speedx = random.randint(4,6)
+        self.speedy = random.randint(2,4)
         self.fill = 'black'
+        self.stop = False
 
 circles = []
 colors = ['red','green','blue']
 player = 0
 def move():
-    over = False
     for en in circles:
+        if en.stop:
+            continue
         if en.x > 450 or en.x < 0:
             en.speedx *= -1
             en.fill =random.choice(colors)
@@ -27,9 +29,7 @@ def move():
         en.y += en.speedy
         cvs.coords(en.id,en.x,en.y,en.x+50,en.y+50)
         if player != 0 and collide(en.id, player):
-            over = True
-    if over:
-        return
+            en.stop = True
 
     root.after(10, move)
 
@@ -45,11 +45,11 @@ def collide(id1, id2):
     return False
 
 root = tkinter.Tk()
-root.title('円が当たったら止まる')
+root.title('円と円の当たり判定')
 root.bind('<Motion>', control)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')
 cvs.pack()
-for i in range(3):
+for i in range(5):
     en = Circle()
     en.id = cvs.create_oval(en.x,en.y,
                             en.x+50,en.y+50,
