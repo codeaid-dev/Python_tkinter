@@ -18,7 +18,7 @@ def motion(e):
     cvs.coords(bar.id,bar.x,bar.y,
                bar.x+bar.w,bar.y+bar.h)
 
-def colliderect(bar,ball):
+def collision(bar,ball):
     if ball.x < bar.x:
         closestX = bar.x
     elif ball.x > bar.x + bar.w:
@@ -49,7 +49,7 @@ def main():
             if b.y > 500-b.r:
                 b.c = (b.c+1)%3
                 cvs.itemconfig(b.id,fill=colors[b.c])
-        if colliderect(bar,b):
+        if collision(bar,b):
             b.dy = -(abs(b.dy))
         cvs.coords(b.id,b.x-b.r,b.y-b.r,b.x+b.r,b.y+b.r)
     root.after(10,main)

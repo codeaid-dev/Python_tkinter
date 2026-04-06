@@ -35,10 +35,10 @@ def control(e):
     for en in circles:
         if en.stop:
             continue
-        if collide(en, e.x, e.y):
+        if collision(en, e.x, e.y):
             en.stop = True
 
-def collide(en, x, y):
+def collision(en, x, y):
     id_x0,id_y0,id_x1,id_y1 = cvs.coords(en.id)
     dist = ((x-(id_x0+en.r))**2 + (y-(id_y0+en.r))**2) ** 0.5
     if dist <= en.r:
