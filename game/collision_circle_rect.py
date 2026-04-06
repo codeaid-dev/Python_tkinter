@@ -1,4 +1,4 @@
-import tkinter, random
+import tkinter, random, math
 
 class Ball:
     pass
@@ -40,17 +40,19 @@ def collision(bar,ball):
 
 def main():
     for b in balls:
-        b.x += b.dx
-        b.y += b.dy
         if b.x < b.r or b.x > 500-b.r:
-            b.dx *= -1
+            b.angle = 180 - b.angle
         if b.y < b.r or b.y > 500-b.r:
-            b.dy *= -1
+            b.angle *= -1
             if b.y > 500-b.r:
                 b.c = (b.c+1)%3
                 cvs.itemconfig(b.id,fill=colors[b.c])
-        if collision(bar,b):
-            b.dy = -(abs(b.dy))
+        b.x += b.speed*math.cos(math.radians(b.angle))
+        vy = b.speed*math.sin(math.radians(b.angle))
+        b.y += vy
+        if collision(bar,b) and vy > 0:
+            b.y = bar.y - b.r
+            b.angle = -(abs(b.angle))
         cvs.coords(b.id,b.x-b.r,b.y-b.r,b.x+b.r,b.y+b.r)
     root.after(10,main)
 
@@ -72,8 +74,8 @@ for i in range(3):
     b = Ball()
     b.x = random.randint(100,400)
     b.y = random.randint(100,250)
-    b.dx = random.randint(1,3)
-    b.dy = random.randint(-3,-1)
+    b.speed = 5
+    b.angle = random.randint(0,360)
     b.r = 10
     b.c = 0
     b.id = cvs.create_oval(b.x-b.r,b.y-b.r,
