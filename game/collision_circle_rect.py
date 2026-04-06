@@ -42,17 +42,17 @@ def main():
     for b in balls:
         if b.x < b.r or b.x > 500-b.r:
             b.angle = 180 - b.angle
-        if b.y < b.r or b.y > 500-b.r:
+        if b.y < b.r or b.y > 500-b.r or collision(bar, b):
             b.angle *= -1
+            if collision(bar, b):
+                b.y = bar.y - b.r
             if b.y > 500-b.r:
                 b.c = (b.c+1)%3
                 cvs.itemconfig(b.id,fill=colors[b.c])
+
         b.x += b.speed*math.cos(math.radians(b.angle))
-        vy = b.speed*math.sin(math.radians(b.angle))
-        b.y += vy
-        if collision(bar,b) and vy > 0:
-            b.y = bar.y - b.r
-            b.angle = -(abs(b.angle))
+        b.y += b.speed*math.sin(math.radians(b.angle))
+
         cvs.coords(b.id,b.x-b.r,b.y-b.r,b.x+b.r,b.y+b.r)
     root.after(10,main)
 
