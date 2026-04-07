@@ -59,7 +59,7 @@ def main():
     root.after(10,main)
 
 root = tkinter.Tk()
-root.title('円は四角形に当たったら跳ね返る')
+root.title('円と矩形(四角形)の当たり判定')
 root.bind('<Motion>', motion)
 root.bind('<Button>', pressed)
 cvs = tkinter.Canvas(root, width=500, height=500, bg='white')

@@ -1,40 +1,59 @@
-import tkinter
-import random
-import math
+import tkinter,random,math
 
-class Block:
-    pass
-Blocks = []
+class Brick:
+    def __init__(self,x,y,w,h):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+
+class Ball:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+        self.dir = random.randint(45,135)
+        self.speed = 8
+        self.r = 5
+    def collision(self,obj):
+        if self.x < obj.x:
+            closestX = obj.x
+        elif self.x > obj.x + obj.w:
+            closestX = obj.x + obj.w
+        else:
+            closestX = self.x
+        
+        if self.y < obj.y:
+            closestY = obj.y
+        elif self.y > obj.y + obj.h:
+            closestY = obj.y + obj.h
+        else:
+            closestY = self.y
+        
+        dx = self.x - closestX
+        dy = self.y - closestY
+        distance = (dx**2 + dy**2)**0.5
+        return distance < self.r
+
+def mapping(ball_x,before_min,before_max,after_min,after_max):
+    return after_min + (after_max-after_min) * ((ball_x-before_min) / (before_max-before_min))
+
+keys = set()
+def key_down(e):
+    keys.add(e.keysym)
+def key_up(e):
+    keys.discard(e.keysym)
+
+bricks = []
 for y in range(6):
     for x in range(5):
-        b = Block()
-        b.x = x*100+60
-        b.y = y*50+40
-        Blocks.append(b)
+        b = Brick(x*100+60,y*50+40,80,30)
+        bricks.append(b)
 
-key = ''
-def key_down(e):
-    global key
-    key = e.keysym
-def key_up(e):
-    global key
-    key = ''
-
-def colliderect(bar_x,bar_y,ball_x,ball_y,bar_width,bar_height):
-    if ball_x>=bar_x and ball_x<=bar_x+bar_width:
-        if ball_y+5>=bar_y and ball_y+5<=bar_y+bar_height or ball_y-5<=bar_y+bar_height and ball_y-5>=bar_y:
-            return True
-    return False
-
-bar_x,bar_y = 275,780
-ball_x,ball_y=300,400
-speed=3
-dir=-(random.randint(-45,45)+270)
 over=False
 clear=False
 start=False
 def main():
-    global bar_x,bar_y,ball_x,ball_y,dir,over,clear,start
+    global start,over,clear
     if over:
         fnt=('Times New Roman',30,'bold')
         cvs.create_text(300,400,text='GAME OVER',fill='white',font=fnt)
@@ -43,43 +62,37 @@ def main():
         fnt=('Times New Roman',30,'bold')
         cvs.create_text(300,400,text='GAME CLEAR',fill='white',font=fnt)
         return
-    if key == 'Up':
-        cvs.move('bar',0,-5)
-        bar_y -= 5
-    if key == 'Down':
-        cvs.move('bar',0,5)
-        bar_y += 5
-    if key == 'Left':
-        cvs.move('bar',-5,0)
-        bar_x -= 5
-    if key == 'Right':
-        cvs.move('bar',5,0)
-        bar_x += 5
-    if key == 'space':
+    if 'Left' in keys:
+        cvs.move(bar.id,-5,0)
+        bar.x -= 5
+    if 'Right' in keys:
+        cvs.move(bar.id,5,0)
+        bar.x += 5
+    if 'space' in keys:
         start = True
     if start:
-        cvs.coords(ball,ball_x-5,ball_y-5,ball_x+5,ball_y+5)
-        ball_x+=math.cos(math.radians(dir))*speed
-        ball_y+=math.sin(math.radians(dir))*speed
-    if ball_x-5<0 or ball_x+5>600:
-        dir = 180-dir
-    if ball_y-5<0:
-        dir *= -1
-    if colliderect(bar_x,bar_y,ball_x,ball_y,50,10):
-        #dir = -(90 + (bar_x+25 - ball_x) / 50*80)
-        position = (bar_x+50 - ball_x) / 50 #バーの当たった位置(0~1)
-        dir = -(position*100+40) #反射後の角度(40~140)
-    if ball_y+5>800:
+        cvs.coords(ball.id,ball.x-ball.r,ball.y-ball.r,
+                   ball.x+ball.r,ball.y+ball.r)
+        ball.x+=math.cos(math.radians(ball.dir))*ball.speed
+        ball.y+=math.sin(math.radians(ball.dir))*ball.speed
+    if ball.x<ball.r or ball.x>600-ball.r:
+        ball.dir = 180 - ball.dir
+    if ball.y<ball.r:
+        ball.dir *= -1
+    if ball.y>800-ball.r:
         over = True
+    if ball.collision(bar):
+        position = (bar.x+bar.w - ball.x) / bar.w #バーの当たった位置(0~1)
+        ball.dir = -(position*100+40) #反射後の角度(40~140)
 
-    for block in Blocks:
-        if block.id != None and colliderect(block.x,block.y,ball_x,ball_y,80,30):
-            cvs.delete(block.id)
-            block.id = None
-            dir *= -1
+    for b in bricks:
+        if b.id != None and ball.collision(b):
+            cvs.delete(b.id)
+            b.id = None
+            ball.dir *= -1
             break
-    for block in Blocks:
-        if block.id != None:
+    for b in bricks:
+        if b.id != None:
             break
     else:
         clear = True
@@ -91,12 +104,23 @@ root.title('ブロック崩し')
 root.bind('<KeyPress>', key_down)
 root.bind('<KeyRelease>', key_up)
 root.geometry('600x800')
-cvs = tkinter.Canvas(root, width=600, height=800, bg='black')
+cvs = tkinter.Canvas(root,width=600,height=800,bg='black')
 cvs.pack()
+
 colors = ['#FF0000','#FF00FF','#FFFF00','#00FF00','#00FFFF','#0000FF']
-for i,block in enumerate(Blocks):
-    block.id = cvs.create_rectangle(block.x,block.y,block.x+80,block.y+30,fill=colors[int(i/5)],width=0,tags='block')
-bar = cvs.create_rectangle(bar_x,bar_y,bar_x+50,bar_y+10,fill='white',tags='bar')
-ball = cvs.create_oval(ball_x,ball_y,ball_x+10,ball_y+10,fill='white',tags='ball')
+for i,b in enumerate(bricks):
+    b.id = cvs.create_rectangle(b.x,b.y,
+                                b.x+b.w,b.y+b.h,
+                                fill=colors[int(i/5)],
+                                width=0,tags='brick')
+
+bar = Brick(275,780,50,10)
+bar.id = cvs.create_rectangle(bar.x,bar.y,
+                              bar.x+bar.w,bar.y+bar.h,
+                              fill='white',tags='bar')
+ball = Ball(295,395)
+ball.id = cvs.create_oval(ball.x-ball.r,ball.y-ball.r,
+                          ball.x+ball.r,ball.y+ball.r,
+                          fill='white',tags='ball')
 main()
 root.mainloop()

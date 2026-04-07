@@ -12,9 +12,9 @@ class Ball:
         self.x = x
         self.y = y
         self.dx = random.randint(-3,3)
-        self.dy = random.randint(2,4)
+        self.dy = random.randint(6,8)
         self.r = 5
-    def collide(self,obj):
+    def collision(self,obj):
         if self.x < obj.x:
             closestX = obj.x
         elif self.x > obj.x + obj.w:
@@ -67,7 +67,7 @@ def main():
         ball.dy *= -1
     if ball.y>800-ball.r:
         over = True
-    if ball.collide(bar):
+    if ball.collision(bar):
         ball.dy = -abs(ball.dy)
 
     root.after(10, main)
