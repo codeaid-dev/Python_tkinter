@@ -28,7 +28,7 @@ def move():
         en.x += en.speedx
         en.y += en.speedy
         cvs.coords(en.id,en.x,en.y,en.x+50,en.y+50)
-        if player != 0 and collide(en.id, player):
+        if player != 0 and collision(en.id, player):
             en.stop = True
 
     root.after(10, move)
@@ -36,7 +36,7 @@ def move():
 def control(e):
     cvs.coords(player,e.x-50,e.y-50,e.x+50,e.y+50)
 
-def collide(id1, id2):
+def collision(id1, id2):
     id1_x0,id1_y0,id1_x1,id1_y1 = cvs.coords(id1)
     id2_x0,id2_y0,id2_x1,id2_y1 = cvs.coords(id2)
     dist = (((id2_x0+50)-(id1_x0+25))**2 + ((id2_y0+50)-(id1_y0+25))**2) ** 0.5
