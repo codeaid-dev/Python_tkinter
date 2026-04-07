@@ -42,9 +42,11 @@ def main():
     for b in balls:
         if b.x < b.r or b.x > 500-b.r:
             b.angle = 180 - b.angle
-        if b.y < b.r or b.y > 500-b.r or collision(bar, b):
+
+        hit = collision(bar, b)
+        if b.y < b.r or b.y > 500-b.r or hit:
             b.angle *= -1
-            if collision(bar, b):
+            if hit:
                 b.y = bar.y - b.r
             if b.y > 500-b.r:
                 b.c = (b.c+1)%3
