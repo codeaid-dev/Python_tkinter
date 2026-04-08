@@ -26,7 +26,7 @@ def main():
     root.after(17,main)
 
 root = tkinter.Tk()
-root.title('地球')
+root.title('惑星')
 cvs = tkinter.Canvas(root,width=500,
                      height=500,bg='black')
 cvs.pack()
