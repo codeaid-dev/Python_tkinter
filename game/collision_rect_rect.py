@@ -25,13 +25,13 @@ A = Rectangle()
 A.x, A.y = 50, 50
 A.w, A.h = 100, 100
 A.id = cvs.create_rectangle(A.x,A.y,
-                            A.x+A.w,A.y+A.h,
-                            fill='green', width=0)
+            A.x+A.w,A.y+A.h,
+            fill='green', width=0)
 B = Rectangle()
 B.x, B.y = 200, 200
 B.w, B.h = 100, 100
 B.id = cvs.create_rectangle(B.x,B.y,
-                            B.x+B.w,B.y+B.h,
-                            fill='black', width=0)
+            B.x+B.w,B.y+B.h,
+            fill='black', width=0)
 main()
 root.mainloop()
