@@ -15,17 +15,17 @@ cvs.pack()
 
 followX,followY=450,450
 
-def draw_sin_cos(x, y):
+def draw_sin_cos():
     cvs.create_line(followX,followY,
-                    x,y,fill='black',
+                    mouseX,mouseY,fill='black',
                     width=1,
                     tags='shape')
     cvs.create_line(followX,followY,
-                    followX,y,
+                    followX,mouseY,
                     fill='#00C800',
                     width=5,tags='shape')
     cvs.create_line(followX,followY,
-                    x,followY,
+                    mouseX,followY,
                     fill='#FFAF00',
                     width=5,tags='shape')
 
@@ -62,7 +62,7 @@ def main():
                     mouseX+5,mouseY+5,
                     fill='black',width=0,
                     tags='shape')
-    draw_sin_cos(mouseX, mouseY)
+    draw_sin_cos()
     follow_circle()
     root.after(10,main)
 
