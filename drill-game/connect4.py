@@ -4,41 +4,61 @@ class Circle:
     def __init__(self,x,y):
         self.x = x
         self.y = y
+        self.stat = 0 #0:白,1:赤,2:黄
 
-def judge():
-    for i in range(len(masu)):
-        if 0<=i%7<=3:
-            if masu[i].stat==1 and masu[i+1].stat==1 and masu[i+2].stat==1 and masu[i+3].stat==1:
-                return 1
-            if masu[i].stat==2 and masu[i+1].stat==2 and masu[i+2].stat==2 and masu[i+3].stat==2:
-                return 2
-        if 0<=i//7<=2:
-            if masu[i].stat==1 and masu[i+7].stat==1 and masu[i+14].stat==1 and masu[i+21].stat==1:
-                return 1
-            if masu[i].stat==2 and masu[i+7].stat==2 and masu[i+14].stat==2 and masu[i+21].stat==2:
-                return 2
-        if 3<=i<=6 or 10<=i<=13 or 17<=i<=20:
-            if masu[i].stat==1 and masu[i+6].stat==1 and masu[i+12].stat==1 and masu[i+18].stat==1:
-                return 1
-            if masu[i].stat==2 and masu[i+6].stat==2 and masu[i+12].stat==2 and masu[i+18].stat==2:
-                return 2
-        if 0<=i<=3 or 7<=i<=10 or 14<=i<=17:
-            if masu[i].stat==1 and masu[i+8].stat==1 and masu[i+16].stat==1 and masu[i+24].stat==1:
-                return 1
-            if masu[i].stat==2 and masu[i+8].stat==2 and masu[i+16].stat==2 and masu[i+24].stat==2:
-                return 2
+def judge(i):
+    player = ens[i].stat
+    if player == 0:
+        return 0
+    row = i // 7
+    col = i % 7
+    directions = [
+        (1, 0),    # 右
+        (0, 1),    # 下
+        (1, 1),    # 右下
+        (1, -1)    # 右上
+    ]
+    for dx, dy in directions:
+        count = 1
+        # 正方向を調べる
+        for n in range(1, 4):
+            x = col + dx * n
+            y = row + dy * n
+            if 0 <= x < 7 and 0 <= y < 6:
+                index = y * 7 + x
+                if ens[index].stat == player:
+                    count += 1
+                else:
+                    break
+            else:
+                break
+        # 逆方向を調べる
+        for n in range(1, 4):
+            x = col - dx * n
+            y = row - dy * n
+            if 0 <= x < 7 and 0 <= y < 6:
+                index = y * 7 + x
+                if ens[index].stat == player:
+                    count += 1
+                else:
+                    break
+            else:
+                break
+        if count >= 4:
+            return player
     return 0
 
+KAZU = 42
 over = False
 turn = False # True:赤,False:黄
-masu = []
+ens = []
 def pressed(event):
     global turn,over
     if over:
         return
-    for i,en in enumerate(masu):
+    for i,en in enumerate(ens):
         if en.x < event.x < en.x+100 and en.y < event.y < en.y+100:
-            if (i>=35 and en.stat==0) or (i<35 and masu[i+7].stat!=0 and en.stat==0):
+            if (i>=35 and en.stat==0) or (i<35 and ens[i+7].stat!=0 and en.stat==0):
                 if turn:
                   cvs.itemconfig(en.id,fill='red')
                   turn = False
@@ -47,14 +67,15 @@ def pressed(event):
                   cvs.itemconfig(en.id,fill='yellow')
                   turn = True
                   en.stat = 2
-        if judge() == 1:
-            cvs.create_text(350,300,text="赤の勝ち",fill='black',font=('Helvetica', 60))
-            over = True
-            break
-        if judge() == 2:
-            cvs.create_text(350,300,text="黄の勝ち",fill='black',font=('Helvetica', 60))
-            over = True
-            break
+                # 今置いたコマを起点に判定
+                winner = judge(i)
+                if winner == 1:
+                    cvs.create_text(350,300,text="赤の勝ち",fill='black',font=('Helvetica', 60))
+                    over = True
+                elif winner == 2:
+                    cvs.create_text(350,300,text="黄の勝ち",fill='black',font=('Helvetica', 60))
+                    over = True
+                break
 
 root = tkinter.Tk()
 root.title('4目並べ')
@@ -67,7 +88,6 @@ for i in range(42):
     y = i//7*100
     en = Circle(x,y)
     en.id = cvs.create_oval(x,y,x+100,y+100,fill='white')
-    en.stat = 0 #0:白,1:赤,2:黄
-    masu.append(en)
+    ens.append(en)
 
 root.mainloop()
